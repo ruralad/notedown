@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Notedown",
-    "version": "0.0.2-alpha"
+    "version": "0.0.2"
   },
   "tauri": {
     "allowlist": {
