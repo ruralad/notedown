@@ -1,6 +1,6 @@
 import { renameFile, writeTextFile } from "@tauri-apps/api/fs";
 import { useActiveStore, useNoteStore } from "../store/NoteStore";
-import { NotedownFolder } from "./DirectoryUtils";
+import { getNotedownFolder } from "./DirectoryUtils";
 import { readNotedownFolder } from "./ReadUtils";
 
 /**
@@ -12,17 +12,17 @@ export const createNewNote = async () => {
 };
 
 export const writeToNote = async (noteName: string, contents: string) => {
-  await writeTextFile(NotedownFolder + `\\` + noteName, contents);
+  const folder = await getNotedownFolder();
+  await writeTextFile(folder + `\\` + noteName, contents);
 };
 
 export const renameNote = async (noteName: string, newNoteName: string) => {
-  await renameFile(
-    NotedownFolder + `\\` + noteName,
-    NotedownFolder + `\\` + newNoteName
-  ).then(() =>
-    readNotedownFolder().then((notes) => {
-      useActiveStore.getState().setActiveNote(newNoteName);
-      useNoteStore.getState().updateNotes(notes);
-    })
+  const folder = await getNotedownFolder();
+  await renameFile(folder + `\\` + noteName, folder + `\\` + newNoteName).then(
+    () =>
+      readNotedownFolder().then((notes) => {
+        useActiveStore.getState().setActiveNote(newNoteName);
+        useNoteStore.getState().updateNotes(notes);
+      })
   );
 };

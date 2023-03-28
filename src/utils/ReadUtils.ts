@@ -1,12 +1,14 @@
 import { readDir, readTextFile } from "@tauri-apps/api/fs";
-import { NotedownFolder } from "./DirectoryUtils";
+import { getNotedownFolder } from "./DirectoryUtils";
 
 export const readNotedownFolder = async () => {
-  const notes = await readDir(NotedownFolder, { recursive: true });
+  const folder = await getNotedownFolder();
+  const notes = await readDir(folder, { recursive: true });
   return notes;
 };
 
 export const readNote = async (noteName: string) => {
-  const contents = await readTextFile(NotedownFolder + `\\` + noteName);
+  const folder = await getNotedownFolder();
+  const contents = await readTextFile(folder + `\\` + noteName);
   return contents;
 };

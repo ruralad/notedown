@@ -1,7 +1,9 @@
 import { BaseDirectory, createDir, exists } from "@tauri-apps/api/fs";
 import { documentDir } from "@tauri-apps/api/path";
 
-export const NotedownFolder = (await documentDir()) + "Notedown";
+export const getNotedownFolder = async () => {
+  return (await documentDir()) + "Notedown";
+};
 
 /**
  * checks whether Notedown folder exists in the document directory. If not, a new folder is created
