@@ -1,9 +1,9 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 * {
   -webkit-tap-highlight-color: transparent;
+  margin: 0;
+  padding: 0;
+  transition: all 0.5s ease;
 }
 
 body {
@@ -17,3 +17,6 @@ body {
 h1 {
   font-size: 24px;
 }
+
+@tailwind components;
+@tailwind utilities;

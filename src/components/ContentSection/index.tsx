@@ -39,11 +39,11 @@ const ContentSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full h-screen bg-gray-900 p-5 text-white">
+    <section className="w-full h-full relative bg-gray-900 p-5 text-white">
       {!!activeNote && (
         <p
           title={UiStore.showDirectory ? `Hide Directory` : `Show Directory`}
-          className="text-2xl hover:cursor-pointer"
+          className="absolute text-2xl hover:cursor-pointer z-10 top-0"
           onClick={() => UiStore.setShowDirectory()}
         >
           {UiStore.showDirectory ? <>&larr;</> : <>&rarr;</>}
@@ -51,7 +51,7 @@ const ContentSection: React.FC = () => {
       )}
 
       {!!editor && (
-        <>
+        <div className="h-full relative">
           <input
             className="outline-none bg-gray-900 text-3xl py-4"
             onChange={(e) => setHeading(e.target.value)}
@@ -59,11 +59,11 @@ const ContentSection: React.FC = () => {
             value={heading}
           />
           <textarea
-            className="h-full w-full p-2 outline-none bg-gray-900"
+            className="h-3/4 overflow-y-scroll w-full p-2 outline-none bg-inherit resize-none"
             onChange={(e) => setContents(e.target.value)}
             value={contents}
           />
-        </>
+        </div>
       )}
     </section>
   );
