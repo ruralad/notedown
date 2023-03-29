@@ -8,6 +8,7 @@
 body {
   background-color: #1e1e1e;
   color: white;
+  font-family: "Open Sans", sans-serif;
 }
 
 ::-webkit-scrollbar {

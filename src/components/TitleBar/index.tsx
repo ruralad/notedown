@@ -1,10 +1,14 @@
 import { appWindow } from "@tauri-apps/api/window";
 import { useEffect, useState } from "react";
 import { AiOutlineMinus } from "react-icons/ai";
+import { BiSquare } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
-import { RxSquare } from "react-icons/rx";
+import { RiFocusFill } from "react-icons/ri";
+import { TbFocus } from "react-icons/tb";
+import { useUiStore } from "../../store/UiStore";
 const TitleBar = () => {
   const [fullscreen, setFullscreen] = useState<boolean>();
+  const UiStore = useUiStore();
 
   useEffect(() => {
     appWindow.isMaximized().then((fullscreenStatus) => {
@@ -13,42 +17,61 @@ const TitleBar = () => {
   }, []);
 
   return (
-    <div className="right-0 flex absolute">
-      <div
-        className="grid place-items-center w-8 h-8 hover:bg-gray-800"
-        onClick={() => appWindow.minimize()}
-      >
-        <AiOutlineMinus />
-      </div>
-      {!!fullscreen ? (
+    <div className="w-full h-full flex justify-between items-center">
+      <div className="h-full flex items-center pl-3">
         <div
-          className="grid place-items-center w-8 h-8 hover:bg-gray-800"
-          onClick={() => {
-            appWindow.unmaximize();
-            setFullscreen(!fullscreen);
-          }}
+          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-600"
+          onClick={() => UiStore.setShowDirectory()}
+          title={
+            UiStore.showDirectory
+              ? "Switch to Focus Mode"
+              : "Switch to Normal Mode"
+          }
         >
-          <RxSquare size={10} />
+          {UiStore.showDirectory ? (
+            <TbFocus size={16} />
+          ) : (
+            <RiFocusFill size={16} />
+          )}
         </div>
-      ) : (
+      </div>
+      <div className="flex h-full">
         <div
-          className="grid place-items-center w-8 h-8 hover:bg-gray-800"
-          onClick={() => {
-            appWindow.maximize();
-            setFullscreen(!fullscreen);
-          }}
+          className="grid place-items-center w-10 h-full hover:bg-gray-900"
+          onClick={() => appWindow.minimize()}
+        >
+          <AiOutlineMinus />
+        </div>
+        {!!fullscreen ? (
+          <div
+            className="grid place-items-center w-10 h-full hover:bg-gray-800"
+            onClick={() => {
+              appWindow.unmaximize();
+              setFullscreen(!fullscreen);
+            }}
+          >
+            <BiSquare size={13} />
+          </div>
+        ) : (
+          <div
+            className="grid place-items-center w-10 h-full hover:bg-gray-800"
+            onClick={() => {
+              appWindow.maximize();
+              setFullscreen(!fullscreen);
+            }}
+          >
+            {" "}
+            <BiSquare size={13} />
+          </div>
+        )}
+
+        <div
+          className="grid place-items-center w-10 h-full hover:bg-red-900"
+          onClick={() => appWindow.close()}
         >
           {" "}
-          <RxSquare size={10} />
+          <CgClose size={15} />
         </div>
-      )}
-
-      <div
-        className="grid place-items-center w-8 h-8 hover:bg-red-900"
-        onClick={() => appWindow.close()}
-      >
-        {" "}
-        <CgClose size={15} />
       </div>
     </div>
   );

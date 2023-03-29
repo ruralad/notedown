@@ -21,7 +21,7 @@ const Header: React.FC = () => {
       <h1 className="text-2xl">All Notes</h1>
       <p
         onClick={createNote}
-        className="py-1 px-2 rounded-md hover:bg-gray-100 hover:cursor-pointer"
+        className="py-1 px-2 rounded-md hover:bg-zinc-700 hover:cursor-pointer"
       >
         new
       </p>

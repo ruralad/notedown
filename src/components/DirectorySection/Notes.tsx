@@ -21,7 +21,7 @@ const Notes: React.FC = () => {
         allNotes.map((v, i) => {
           return (
             <p
-              className="p-1 m-1 hover:bg-gray-100 hover:cursor-pointer rounded-md "
+              className="p-1 m-1 hover:bg-zinc-700 hover:cursor-pointer rounded-md "
               key={v.name}
               onClick={() => setActiveNote(v.name as string)}
             >

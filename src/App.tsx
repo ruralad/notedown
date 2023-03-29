@@ -10,11 +10,11 @@ const App: React.FC = () => {
     <main className="relative w-full h-screen flex flex-col">
       <div
         data-tauri-drag-region
-        className="absolute h-8 w-full z-20 text-gray-400"
+        className="h-10 w-full text-gray-400 bg-zinc-700"
       >
         <TitleBar />
       </div>
-      <div className="relative w-full h-full flex pt-8">
+      <div className="relative w-full h-full flex">
         {!!showDirectory && <DirectorySection />}
         <ContentSection />
       </div>
