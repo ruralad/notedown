@@ -15,41 +15,40 @@ const TitleBar = () => {
   return (
     <div className="right-0 flex absolute">
       <div
-        className="grid place-items-center w-8 h-8 hover:bg-slate-800 hover:cursor-pointer"
+        className="grid place-items-center w-8 h-8 hover:bg-gray-800"
         onClick={() => appWindow.minimize()}
       >
         <AiOutlineMinus />
       </div>
-      {fullscreen ? (
+      {!!fullscreen ? (
         <div
-          className="grid place-items-center w-8 h-8 hover:bg-slate-800 hover:cursor-pointer"
+          className="grid place-items-center w-8 h-8 hover:bg-gray-800"
           onClick={() => {
             appWindow.unmaximize();
             setFullscreen(!fullscreen);
           }}
         >
-          {" "}
-          <RxSquare />
+          <RxSquare size={10} />
         </div>
       ) : (
         <div
-          className="grid place-items-center w-8 h-8 hover:bg-slate-800 hover:cursor-pointer"
+          className="grid place-items-center w-8 h-8 hover:bg-gray-800"
           onClick={() => {
             appWindow.maximize();
             setFullscreen(!fullscreen);
           }}
         >
           {" "}
-          <RxSquare />
+          <RxSquare size={10} />
         </div>
       )}
 
       <div
-        className="grid place-items-center w-8 h-8 hover:bg-slate-800 hover:cursor-pointer"
+        className="grid place-items-center w-8 h-8 hover:bg-red-900"
         onClick={() => appWindow.close()}
       >
         {" "}
-        <CgClose />
+        <CgClose size={15} />
       </div>
     </div>
   );
