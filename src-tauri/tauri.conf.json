@@ -7,8 +7,8 @@
     "withGlobalTauri": false
   },
   "package": {
-    "productName": "Notedown",
-    "version": "0.0.2"
+    "productName": "Notedown - Alpha",
+    "version": "0.0.3"
   },
   "tauri": {
     "allowlist": {

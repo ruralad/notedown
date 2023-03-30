@@ -3,12 +3,12 @@
   -webkit-tap-highlight-color: transparent;
   margin: 0;
   padding: 0;
-  transition: all 0.5s ease;
 }
 
 body {
   background-color: #1e1e1e;
   color: white;
+  font-family: "Open Sans", sans-serif;
 }
 
 ::-webkit-scrollbar {
