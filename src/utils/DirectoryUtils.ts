@@ -1,4 +1,9 @@
-import { BaseDirectory, createDir, exists } from "@tauri-apps/api/fs";
+import {
+  BaseDirectory,
+  createDir,
+  exists,
+  writeTextFile,
+} from "@tauri-apps/api/fs";
 import { documentDir } from "@tauri-apps/api/path";
 
 export const getNotedownFolder = async () => {
@@ -21,9 +26,22 @@ export const verifyNotedownFolder = async () => {
     recursive: true,
   })
     .then(async () => {
-      console.log(
-        "Notedown folder doesn't exist, created it at " + (await documentDir())
-      );
+      await createDir("Notedown\\.settings", {
+        dir: BaseDirectory.Document,
+        recursive: true,
+      })
+        .then(async () => {
+          await writeTextFile(
+            "Notedown\\.settings\\app.json",
+            `{opened : ""}`,
+            { dir: BaseDirectory.Document }
+          ).then(() => {
+            console.log("Folders initialized");
+          });
+        })
+        .catch((e) => {
+          console.log("Notedown folder created, settings creation error " + e);
+        });
     })
     .catch((e) => {
       console.log(
