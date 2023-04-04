@@ -39,21 +39,11 @@ const ContentSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full h-full relative bg-gray-900 p-5 text-white">
-      {!!activeNote && (
-        <p
-          title={UiStore.showDirectory ? `Hide Directory` : `Show Directory`}
-          className="absolute text-2xl hover:cursor-pointer z-10 top-0"
-          onClick={() => UiStore.setShowDirectory()}
-        >
-          {UiStore.showDirectory ? <>&larr;</> : <>&rarr;</>}
-        </p>
-      )}
-
+    <section className="w-full h-full relative bg-zinc-900 p-5 text-white">
       {!!editor && (
         <div className="h-full relative">
           <input
-            className="outline-none bg-gray-900 text-3xl py-4"
+            className="outline-none bg-zinc-900 text-3xl font-medium py-4"
             onChange={(e) => setHeading(e.target.value)}
             onBlur={updateHeading}
             value={heading}
