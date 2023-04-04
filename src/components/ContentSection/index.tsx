@@ -45,16 +45,6 @@ const ContentSection: React.FC = () => {
 
   return (
     <section className="w-full h-full relative bg-gray-900 p-5 text-white">
-      {!!activeNoteTitle && (
-        <p
-          title={UiStore.showDirectory ? `Hide Directory` : `Show Directory`}
-          className="absolute text-2xl hover:cursor-pointer z-10 top-0"
-          onClick={() => UiStore.setShowDirectory()}
-        >
-          {UiStore.showDirectory ? <>&larr;</> : <>&rarr;</>}
-        </p>
-      )}
-
       {!!editor && (
         <div className="h-full relative">
           <input
