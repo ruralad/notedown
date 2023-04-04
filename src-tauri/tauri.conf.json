@@ -27,7 +27,7 @@
         "writeFile": true,
         "exists": true,
         "renameFile": true,
-        "scope": ["$DOCUMENT/Notedown", "$DOCUMENT/Notedown/*"]
+        "scope": ["$DOCUMENT/Notedown", "$DOCUMENT/Notedown/**/*"]
       },
       "window": {
         "all": false,
