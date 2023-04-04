@@ -1,5 +1,6 @@
 import { FileEntry } from "@tauri-apps/api/fs";
 import { create } from "zustand";
+import { NoteProps } from "../../types/Notes";
 
 interface NoteState {
   notes: FileEntry[];
@@ -12,16 +13,21 @@ export const useNoteStore = create<NoteState>()((set) => ({
 }));
 
 interface ActiveState {
-  activeNote: string;
-  activeNoteContents: string;
-  setActiveNote: (note: string) => void;
-  setActiveNoteContents: (content: string) => void;
+  activeNoteTitle: string;
+  activeNote: NoteProps;
+  setActiveNoteTitle: (noteName: string) => void;
+  setActiveNote: (note: NoteProps) => void;
 }
 
 export const useActiveStore = create<ActiveState>()((set) => ({
-  activeNote: "",
-  activeNoteContents: "",
+  activeNoteTitle: "",
+  activeNote: {
+    content: "",
+    createdAt: "",
+    noteId: "",
+    title: "",
+  },
+  setActiveNoteTitle: (noteName) =>
+    set((state) => ({ activeNoteTitle: noteName })),
   setActiveNote: (note) => set((state) => ({ activeNote: note })),
-  setActiveNoteContents: (content) =>
-    set((state) => ({ activeNoteContents: content })),
 }));
