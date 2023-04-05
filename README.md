@@ -7,7 +7,11 @@
 <div align="center">
 
 [![Windows Support](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/ruralad/notedown/releases) [![Ubuntu Support](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)](https://github.com/ruralad/notedown/releases) [![Mac Support](https://img.shields.io/badge/MACOS-adb8c5?style=for-the-badge&logo=macos&logoColor=white)](https://github.com/ruralad/notedown/releases)
-[![GitHub package.json version](https://img.shields.io/github/package-json/v/ruralad/notedown?color=%40&label=stable)](https://github.com/ruralad/notedown/releases/latest) 
+
+</div>
+<div align="center">
+
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/ruralad/notedown?color=%40&label=stable)](https://github.com/ruralad/notedown/releases/latest)
 [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ruralad/notedown/dev?color=%21&label=latest)](https://github.com/ruralad/notedown/releases) ![GitHub issues](https://img.shields.io/github/issues-raw/ruralad/notedown)
 
 </div>
