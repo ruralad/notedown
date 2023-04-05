@@ -13,8 +13,7 @@ const Notes: React.FC = () => {
 
   useEffect(() => {
     readNotedownFolder().then((notes: FileEntry[]) => {
-      //removing first entry because its the .settings folder
-      updateNotes(notes.slice(1));
+      updateNotes(notes);
     });
   }, []);
 

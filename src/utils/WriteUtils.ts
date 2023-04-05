@@ -18,7 +18,6 @@ export const createNewNote = async () => {
     content: "",
     createdAt: new Date().toString(),
   };
-
   writeToNote(noteName, JSON.stringify(noteContents));
 };
 
