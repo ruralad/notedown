@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { NoteProps } from "../../../types/Notes";
 
 import { useActiveStore } from "../../store/NoteStore";
-import { useUiStore } from "../../store/UiStore";
 
 import { readNote } from "../../utils/ReadUtils";
 import { renameNote, writeToNote } from "../../utils/WriteUtils";
@@ -10,7 +9,6 @@ import { renameNote, writeToNote } from "../../utils/WriteUtils";
 const ContentSection: React.FC = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
   const activeNote = useActiveStore((state) => state.activeNote);
-  const UiStore = useUiStore();
 
   const setActiveNote = useActiveStore((state) => state.setActiveNote);
 
