@@ -5,6 +5,8 @@ import { useNoteStore } from "../../store/NoteStore";
 import { readNotedownFolder } from "../../utils/ReadUtils";
 import { createNewNote } from "../../utils/WriteUtils";
 
+import { IoCreateOutline } from "react-icons/io5";
+
 const Header: React.FC = () => {
   const updateNotes = useNoteStore((state) => state.updateNotes);
 
@@ -16,14 +18,13 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center w-full justify-between">
+    <div className="flex items-center w-full justify-between text-gray-200">
       <h1 className="text-2xl">All Notes</h1>
-      <p
+      <IoCreateOutline
         onClick={createNote}
-        className="py-1 px-2 rounded-md hover:bg-zinc-700 hover:cursor-pointer"
-      >
-        new
-      </p>
+        title="Create a new note"
+        className="text-xl hover:text-white hover:cursor-pointer"
+      />
     </div>
   );
 };
