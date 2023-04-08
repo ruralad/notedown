@@ -6,6 +6,9 @@ import { CgClose } from "react-icons/cg";
 import { RiFocusFill } from "react-icons/ri";
 import { TbFocus } from "react-icons/tb";
 import { useUiStore } from "../../store/UiStore";
+
+import { version } from "../../../package.json";
+
 const TitleBar = () => {
   const [fullscreen, setFullscreen] = useState<boolean>();
   const UiStore = useUiStore();
@@ -19,6 +22,9 @@ const TitleBar = () => {
   return (
     <div className="w-full h-full flex justify-between items-center">
       <div className="h-full flex items-center pl-3">
+        <span className="text-xs mr-2 pointer-events-none">
+          Notedown v{version}
+        </span>
         <div
           className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-600"
           onClick={() => UiStore.setShowDirectory()}
@@ -37,14 +43,14 @@ const TitleBar = () => {
       </div>
       <div className="flex h-full">
         <div
-          className="grid place-items-center w-10 h-full hover:bg-gray-900"
+          className="grid place-items-center w-10 h-full hover:bg-zinc-600"
           onClick={() => appWindow.minimize()}
         >
           <AiOutlineMinus />
         </div>
         {!!fullscreen ? (
           <div
-            className="grid place-items-center w-10 h-full hover:bg-gray-800"
+            className="grid place-items-center w-10 h-full hover:bg-zinc-600"
             onClick={() => {
               appWindow.unmaximize();
               setFullscreen(!fullscreen);
@@ -54,7 +60,7 @@ const TitleBar = () => {
           </div>
         ) : (
           <div
-            className="grid place-items-center w-10 h-full hover:bg-gray-800"
+            className="grid place-items-center w-10 h-full hover:bg-zinc-600"
             onClick={() => {
               appWindow.maximize();
               setFullscreen(!fullscreen);
@@ -66,7 +72,7 @@ const TitleBar = () => {
         )}
 
         <div
-          className="grid place-items-center w-10 h-full hover:bg-red-900"
+          className="grid place-items-center w-10 h-full hover:bg-red-600 hover:text-white"
           onClick={() => appWindow.close()}
         >
           {" "}

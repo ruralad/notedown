@@ -42,11 +42,11 @@ const ContentSection: React.FC = () => {
   };
 
   return (
-    <section className="w-full h-full relative bg-gray-900 p-5 text-white">
+    <section className="w-full h-full relative bg-zinc-900 p-14 text-gray-100">
       {!!editor && (
         <div className="h-full relative">
           <input
-            className="outline-none bg-gray-900 text-3xl py-4"
+            className="outline-none bg-inherit text-3xl font-bold py-4"
             onChange={(e) => setTitle(e.target.value)}
             onBlur={updateTitle}
             value={title}
