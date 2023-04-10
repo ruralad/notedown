@@ -23,6 +23,7 @@ export const useActiveStore = create<ActiveState>()((set) => ({
   activeNoteTitle: "",
   activeNote: {
     content: "",
+    noteNo: -1,
     createdAt: "",
     noteId: "",
     title: "",
