@@ -9,11 +9,12 @@ import { NoteProps } from "../../types/Notes";
 /**
  * creates a new note in the Notedown
  */
-export const createNewNote = async () => {
+export const createNewNote = async (totalNotes: number) => {
   const noteName = `\\Note - ${useNoteStore.getState().notes.length + 1}.json`;
 
   const noteContents: NoteProps = {
     noteId: uuidv4(),
+    noteNo: totalNotes + 1,
     title: `Note - ${useNoteStore.getState().notes.length + 1}`,
     content: "",
     createdAt: new Date().toString(),
