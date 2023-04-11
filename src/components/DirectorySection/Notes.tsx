@@ -41,7 +41,7 @@ const Notes: React.FC = () => {
   };
 
   return (
-    <div className="mt-10 overflow-y-scroll">
+    <div className="mt-10">
       <ul>
         <AnimatePresence>
           {allNotes &&

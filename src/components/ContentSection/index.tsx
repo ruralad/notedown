@@ -84,7 +84,7 @@ const ContentSection: React.FC = () => {
   return (
     <section
       className={
-        "w-full h-full relative bg-zinc-900 p-14 text-gray-100 " +
+        "w-full h-full relative bg-zinc-900 px-14 py-14 text-gray-100 " +
         (showDirectory ? "rounded-tl-xl" : ``)
       }
     >
@@ -104,7 +104,7 @@ const ContentSection: React.FC = () => {
             value={title}
           />
           <textarea
-            className="h-3/4 overflow-y-scroll w-full p-4 outline-none bg-inherit resize-none text-gray-300 leading-relaxed"
+            className="h-5/6 overflow-y-scroll w-full p-4 outline-none bg-inherit resize-none text-gray-300 leading-relaxed"
             onChange={(e) => setContents(e.target.value)}
             value={contents}
           />
