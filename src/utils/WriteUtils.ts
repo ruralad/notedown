@@ -10,7 +10,7 @@ import { NoteProps } from "../../types/Notes";
  * creates a new note in the Notedown
  */
 export const createNewNote = async (totalNotes: number) => {
-  const noteName = `\\Note - ${useNoteStore.getState().notes.length + 1}.json`;
+  const noteName = `Note - ${useNoteStore.getState().notes.length + 1}.json`;
 
   const noteContents: NoteProps = {
     noteId: uuidv4(),
@@ -20,6 +20,7 @@ export const createNewNote = async (totalNotes: number) => {
     createdAt: new Date().toString(),
   };
   writeToNote(noteName, JSON.stringify(noteContents));
+  return noteName;
 };
 
 export const writeToNote = async (noteName: string, contents: string) => {

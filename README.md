@@ -18,6 +18,7 @@
 
 ## Installation
 
+Notedown is under heavy development, expect lot of breaking changes till we hit 1.0.
 If you want to install Notedown on your system, you can download the installer for your operating system [on the release page](https://github.com/ruralad/notedown/releases).
 
 ## Run Locally

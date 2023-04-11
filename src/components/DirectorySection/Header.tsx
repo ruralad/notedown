@@ -1,4 +1,4 @@
-import { useNoteStore } from "../../store/NoteStore";
+import { useActiveStore, useNoteStore } from "../../store/NoteStore";
 
 import { readNotedownFolder } from "../../utils/ReadUtils";
 import { createNewNote } from "../../utils/WriteUtils";
@@ -12,12 +12,16 @@ const Header: React.FC = () => {
   const appSettings = useSettingsStore((state) => state.appSettings);
 
   const setAppSettings = useSettingsStore((state) => state.setAppSettings);
+  const setActiveNoteTitle = useActiveStore(
+    (state) => state.setActiveNoteTitle
+  );
 
   const createNote = async () => {
-    createNewNote(appSettings.notesCreated).then(async () => {
+    createNewNote(appSettings.notesCreated).then(async (noteName) => {
       await updateNotesCount(appSettings).then((newsettings) => {
         setAppSettings(newsettings);
       });
+      setActiveNoteTitle(noteName);
     });
     readNotedownFolder().then((notes) => {
       updateNotes(notes);
