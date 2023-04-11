@@ -37,14 +37,13 @@ const ContentSection: React.FC = () => {
   }, [activeNoteTitle]);
 
   useEffect(() => {
+    countWordsAndChars();
     if (contents.length > 0) {
       const updatedNote: NoteProps = { ...activeNote, content: contents };
-      writeToNote(activeNoteTitle, JSON.stringify(updatedNote));
+      writeToNote(activeNoteTitle, JSON.stringify(updatedNote)).then(() =>
+        setActiveNote(updatedNote)
+      );
     }
-  }, [contents]);
-
-  useEffect(() => {
-    countWordsAndChars();
   }, [contents]);
 
   useEffect(() => {
@@ -69,15 +68,20 @@ const ContentSection: React.FC = () => {
   const updateTitle = () => {
     if (
       title.length < 1 ||
-      (allNotes.map((file) => file.name).includes(title + ".json") &&
+      (allNotes
+        .map((file) => file.name?.toLowerCase())
+        .includes(title.toLowerCase() + ".json") &&
         title != activeNoteTitle.split(".json")[0])
     ) {
       setTitleError(true);
       return;
     } else {
+      console.log(activeNote);
       const updatedNote: NoteProps = { ...activeNote, title: title };
-      writeToNote(activeNoteTitle, JSON.stringify(updatedNote));
-      renameNote(activeNoteTitle, title);
+      writeToNote(activeNoteTitle, JSON.stringify(updatedNote)).then(() => {
+        renameNote(activeNoteTitle, title);
+        setActiveNote(updatedNote);
+      });
     }
   };
 
@@ -99,13 +103,14 @@ const ContentSection: React.FC = () => {
               (titleError ? `border-b-2 border-b-red-600` : ``)
             }
             spellCheck={false}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value.trim())}
             onBlur={updateTitle}
             value={title}
           />
           <textarea
             className="h-5/6 overflow-y-scroll w-full p-4 outline-none bg-inherit resize-none text-gray-300 leading-relaxed"
             onChange={(e) => setContents(e.target.value)}
+            spellCheck={false}
             value={contents}
           />
         </div>

@@ -69,7 +69,7 @@ const Notes: React.FC = () => {
                   key={v.name}
                   onClick={() => handleNoteClick(v.name as string)}
                 >
-                  {v.name?.split(".")[0]}
+                  {v.name?.split(".json")[0]}
                 </motion.li>
               );
             })}
