@@ -22,7 +22,7 @@ const TitleBar = () => {
   return (
     <div
       data-tauri-drag-region
-      className="h-10 w-full text-gray-400 flex justify-between items-center"
+      className="max-h-10 w-full text-gray-400 flex justify-between items-center"
     >
       <div className="h-full flex items-center pl-3">
         {UiStore.showDirectory && (
