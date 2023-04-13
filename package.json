@@ -2,9 +2,10 @@
   "name": "notedown",
   "description": "local-first note taking app, with tauri",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.3.0-beta",
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -12,6 +13,7 @@
   },
   "dependencies": {
     "@fontsource/open-sans": "^4.5.14",
+    "@radix-ui/react-dialog": "^1.0.3",
     "@tauri-apps/api": "^1.2.0",
     "@types/uuid": "^9.0.1",
     "framer-motion": "^10.11.2",

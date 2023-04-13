@@ -11,9 +11,6 @@ export const getNotedownFolder = async () => {
   return (await documentDir()) + "Notedown";
 };
 
-/**
- * checks whether Notedown folder exists in the document directory. If not, a new folder is created
- *  */
 export const verifyNotedownFolder = async () => {
   const folderExist: Boolean = await exists("Notedown", {
     dir: BaseDirectory.Document,
@@ -26,6 +23,7 @@ export const verifyNotedownFolder = async () => {
   const appSettings: AppSettingsProps = {
     lastOpened: "",
     notesCreated: 0,
+    notesDeleted: 0,
   };
 
   await createDir("Notedown", {

@@ -10,6 +10,7 @@ export const useSettingsStore = create<SettingsStoreProps>()((set) => ({
   appSettings: {
     lastOpened: "",
     notesCreated: 0,
+    notesDeleted: 0,
   },
   setAppSettings: (settings) => set({ appSettings: settings }),
 }));
