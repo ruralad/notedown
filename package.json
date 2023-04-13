@@ -2,9 +2,10 @@
   "name": "notedown",
   "description": "local-first note taking app, with tauri",
   "private": true,
-  "version": "0.2.2",
+  "version": "0.3.0-beta",
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
