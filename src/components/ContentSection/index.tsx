@@ -7,6 +7,8 @@ import { useUiStore } from "../../store/UiStore";
 import { readNote } from "../../utils/ReadUtils";
 import { renameNote, writeToNote } from "../../utils/WriteUtils";
 
+import NoteSettings from "./NoteSettings";
+
 const ContentSection: React.FC = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
   const activeNote = useActiveStore((state) => state.activeNote);
@@ -33,6 +35,9 @@ const ContentSection: React.FC = () => {
         setContents(noteContents.content);
         toggleEditor(true);
       });
+    } else {
+      setTitle("");
+      setContents("");
     }
   }, [activeNoteTitle]);
 
@@ -92,9 +97,10 @@ const ContentSection: React.FC = () => {
         (showDirectory ? "rounded-tl-xl" : ``)
       }
     >
-      <div className="absolute right-3 top-3 text-xs text-gray-400">
+      <NoteSettings />
+      <span className="absolute right-3 bottom-3 text-xs text-gray-400">
         words : {wordCount}, characters : {charCount}
-      </div>
+      </span>
       {!!editor && (
         <div className="h-full relative select-text">
           <input

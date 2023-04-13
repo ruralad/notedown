@@ -8,15 +8,11 @@
   },
   "package": {
     "productName": "Notedown",
-    "version": "0.2.2"
+    "version": "0.3.0"
   },
   "tauri": {
     "allowlist": {
       "all": false,
-      "shell": {
-        "all": false,
-        "open": true
-      },
       "path": {
         "all": true
       },
@@ -27,6 +23,7 @@
         "writeFile": true,
         "exists": true,
         "renameFile": true,
+        "removeFile": true,
         "scope": ["$DOCUMENT/Notedown", "$DOCUMENT/Notedown/**/*"]
       },
       "window": {

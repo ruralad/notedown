@@ -23,6 +23,7 @@ export const verifyNotedownFolder = async () => {
   const appSettings: AppSettingsProps = {
     lastOpened: "",
     notesCreated: 0,
+    notesDeleted: 0,
   };
 
   await createDir("Notedown", {

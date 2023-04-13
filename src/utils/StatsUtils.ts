@@ -18,6 +18,18 @@ export const updateNotesCount = async (currentSettings: AppSettingsProps) => {
   return newSettings;
 };
 
+export const updateDeletedNotesCount = async (
+  currentSettings: AppSettingsProps
+) => {
+  const newSettings: AppSettingsProps = {
+    ...currentSettings,
+    notesDeleted: currentSettings.notesDeleted + 1,
+    lastOpened: "",
+  };
+  updateAppSettings(newSettings);
+  return newSettings;
+};
+
 export const updateAppSettings = async (newSettings: AppSettingsProps) => {
   const folder = await getNotedownFolder();
   await writeTextFile(
