@@ -8,7 +8,6 @@ import { renameNote, writeToNote } from "../../utils/WriteUtils";
 
 import NoteSettings from "./NoteSettings";
 
-import ReactMarkdown from "react-markdown";
 import { NoteProps } from "../../../types/Notes";
 
 const ContentSection: React.FC = () => {
@@ -113,7 +112,6 @@ const ContentSection: React.FC = () => {
             onBlur={updateTitle}
             value={title}
           />
-          <ReactMarkdown>{contents}</ReactMarkdown>
           <textarea
             className="h-5/6 overflow-y-scroll w-full p-4 outline-none bg-inherit resize-none text-gray-300 leading-relaxed"
             onChange={(e) => setContents(e.target.value)}
