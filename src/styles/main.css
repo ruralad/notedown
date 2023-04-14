@@ -24,9 +24,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-h1 {
-  font-size: 24px;
-}
 
 @tailwind components;
 @tailwind utilities;

@@ -1,5 +1,6 @@
 import { appWindow } from "@tauri-apps/api/window";
 import { useEffect, useState } from "react";
+
 import { version } from "../../../package.json";
 
 import { useUiStore } from "../../store/UiStore";
@@ -32,7 +33,7 @@ const TitleBar = () => {
           </span>
         )}
         <span
-          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-600 hover:text-white"
+          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-700 hover:text-white"
           onClick={() => UiStore.setShowDirectory()}
           title={
             UiStore.showDirectory
@@ -47,7 +48,7 @@ const TitleBar = () => {
           )}
         </span>
         {/* <span
-          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-600 hover:text-white"
+          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-700 hover:text-white"
           title="Settings [COMING on 0.5.0]"
         >
           <FiSettings size={15} />
@@ -55,14 +56,14 @@ const TitleBar = () => {
       </div>
       <div className="flex h-full">
         <div
-          className="grid place-items-center w-10 h-full hover:bg-zinc-600 hover:text-white"
+          className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
           onClick={() => appWindow.minimize()}
         >
           <AiOutlineMinus />
         </div>
         {!!fullscreen ? (
           <div
-            className="grid place-items-center w-10 h-full hover:bg-zinc-600 hover:text-white"
+            className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
             onClick={() => {
               appWindow.unmaximize();
               setFullscreen(!fullscreen);
@@ -72,7 +73,7 @@ const TitleBar = () => {
           </div>
         ) : (
           <div
-            className="grid place-items-center w-10 h-full hover:bg-zinc-600 hover:text-white"
+            className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
             onClick={() => {
               appWindow.maximize();
               setFullscreen(!fullscreen);

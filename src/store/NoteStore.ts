@@ -1,5 +1,6 @@
 import { FileEntry } from "@tauri-apps/api/fs";
 import { create } from "zustand";
+
 import { NoteProps } from "../../types/Notes";
 
 interface NoteState {

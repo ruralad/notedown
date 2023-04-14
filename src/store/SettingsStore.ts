@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { AppSettingsProps } from "../../types/Notes";
+
+import { AppSettingsProps } from "../../types/Settings";
 
 interface SettingsStoreProps {
   appSettings: AppSettingsProps;
