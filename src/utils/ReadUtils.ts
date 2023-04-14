@@ -1,6 +1,8 @@
 import { readDir, readTextFile } from "@tauri-apps/api/fs";
-import type { NoteProps } from "../../types/Notes";
+
 import { getNotedownFolder, verifyNotedownFolder } from "./DirectoryUtils";
+
+import type { NoteProps } from "../../types/Notes";
 
 export const readNotedownFolder = async () => {
   verifyNotedownFolder();

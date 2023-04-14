@@ -1,10 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
-import { AppSettingsProps } from "../../../types/Notes";
+
 import { useActiveStore, useNoteStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
+
 import { readNotedownFolder } from "../../utils/ReadUtils";
 import { readAppSettings, updateAppSettings } from "../../utils/StatsUtils";
+
+import { AppSettingsProps } from "../../../types/Settings";
 
 const Notes: React.FC = () => {
   const allNotes = useNoteStore((state) => state.notes);

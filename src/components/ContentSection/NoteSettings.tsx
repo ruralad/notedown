@@ -1,26 +1,31 @@
-import { useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 
 import { useActiveStore } from "../../store/NoteStore";
-
-import * as Dialog from "@radix-ui/react-dialog";
-import { AiOutlineDelete } from "react-icons/ai";
-import { BiExport } from "react-icons/bi";
 import { useSettingsStore } from "../../store/SettingsStore";
+
 import { updateDeletedNotesCount } from "../../utils/StatsUtils";
 import { deleteNote } from "../../utils/WriteUtils";
+
+import { AiOutlineDelete } from "react-icons/ai";
 
 const NoteSettings = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
 
-  const [deleteModal, setDeleteModal] = useState<boolean>(false);
-
   if (activeNoteTitle.length > 0) {
     return (
       <div className="absolute z-999 flex gap-3 right-3 top-3 text-gray-400">
+        {/* <BsMarkdown
+          className="hover:cursor-pointer"
+          title="View as Markdown [COMING on 0.4]"
+        />
+        <FiEdit3
+          className="hover:cursor-pointer"
+          title="View as Markdown [COMING on 0.4]"
+        />
         <BiExport
           className="hover:cursor-pointer"
           title="Export as Markdown [COMING on 0.4]"
-        />
+        /> */}
         <DeleteNote />
       </div>
     );

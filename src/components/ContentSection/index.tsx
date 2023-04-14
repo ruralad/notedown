@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { NoteProps } from "../../../types/Notes";
 
 import { useActiveStore, useNoteStore } from "../../store/NoteStore";
 import { useUiStore } from "../../store/UiStore";
@@ -9,6 +8,9 @@ import { renameNote, writeToNote } from "../../utils/WriteUtils";
 
 import NoteSettings from "./NoteSettings";
 
+import ReactMarkdown from "react-markdown";
+import { NoteProps } from "../../../types/Notes";
+
 const ContentSection: React.FC = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
   const activeNote = useActiveStore((state) => state.activeNote);
@@ -16,8 +18,6 @@ const ContentSection: React.FC = () => {
   const showDirectory = useUiStore((state) => state.showDirectory);
 
   const setActiveNote = useActiveStore((state) => state.setActiveNote);
-
-  const [editor, toggleEditor] = useState<boolean>(false);
 
   const [title, setTitle] = useState<string>("");
   const [contents, setContents] = useState<string>("");
@@ -33,7 +33,6 @@ const ContentSection: React.FC = () => {
         setActiveNote(noteContents);
         setTitle(noteContents.title);
         setContents(noteContents.content);
-        toggleEditor(true);
       });
     } else {
       setTitle("");
@@ -75,14 +74,13 @@ const ContentSection: React.FC = () => {
       title.length < 1 ||
       (allNotes
         .map((file) => file.name?.toLowerCase())
-        .includes(title.toLowerCase() + ".json") &&
-        title != activeNoteTitle.split(".json")[0])
+        .includes(title.trim().toLowerCase() + ".json") &&
+        title.trim() != activeNoteTitle.split(".json")[0])
     ) {
       setTitleError(true);
       return;
     } else {
-      console.log(activeNote);
-      const updatedNote: NoteProps = { ...activeNote, title: title };
+      const updatedNote: NoteProps = { ...activeNote, title: title.trim() };
       writeToNote(activeNoteTitle, JSON.stringify(updatedNote)).then(() => {
         renameNote(activeNoteTitle, title);
         setActiveNote(updatedNote);
@@ -98,10 +96,12 @@ const ContentSection: React.FC = () => {
       }
     >
       <NoteSettings />
-      <span className="absolute right-3 bottom-3 text-xs text-gray-400">
-        words : {wordCount}, characters : {charCount}
-      </span>
-      {!!editor && (
+      {activeNoteTitle && (
+        <span className="absolute right-3 bottom-3 text-xs text-gray-400">
+          words : {wordCount}, characters : {charCount}
+        </span>
+      )}
+      {!!activeNoteTitle && (
         <div className="h-full relative select-text">
           <input
             className={
@@ -109,10 +109,11 @@ const ContentSection: React.FC = () => {
               (titleError ? `border-b-2 border-b-red-600` : ``)
             }
             spellCheck={false}
-            onChange={(e) => setTitle(e.target.value.trim())}
+            onChange={(e) => setTitle(e.target.value)}
             onBlur={updateTitle}
             value={title}
           />
+          <ReactMarkdown>{contents}</ReactMarkdown>
           <textarea
             className="h-5/6 overflow-y-scroll w-full p-4 outline-none bg-inherit resize-none text-gray-300 leading-relaxed"
             onChange={(e) => setContents(e.target.value)}

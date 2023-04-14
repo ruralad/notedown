@@ -1,11 +1,11 @@
 import { useActiveStore, useNoteStore } from "../../store/NoteStore";
+import { useSettingsStore } from "../../store/SettingsStore";
 
 import { readNotedownFolder } from "../../utils/ReadUtils";
+import { updateNotesCount } from "../../utils/StatsUtils";
 import { createNewNote } from "../../utils/WriteUtils";
 
 import { IoCreateOutline } from "react-icons/io5";
-import { useSettingsStore } from "../../store/SettingsStore";
-import { updateNotesCount } from "../../utils/StatsUtils";
 
 const Header: React.FC = () => {
   const updateNotes = useNoteStore((state) => state.updateNotes);

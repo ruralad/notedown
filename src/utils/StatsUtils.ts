@@ -1,6 +1,8 @@
 import { readTextFile, writeTextFile } from "@tauri-apps/api/fs";
-import { AppSettingsProps } from "../../types/Notes";
+
 import { getNotedownFolder } from "./DirectoryUtils";
+
+import { AppSettingsProps } from "../../types/Settings";
 
 export const readAppSettings = async () => {
   const folder = await getNotedownFolder();
