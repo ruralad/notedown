@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import { NoteProps } from "../../../types/Notes";
 
 import { useActiveStore, useNoteStore } from "../../store/NoteStore";
 import { useUiStore } from "../../store/UiStore";
 
 import { readNote } from "../../utils/ReadUtils";
 import { renameNote, writeToNote } from "../../utils/WriteUtils";
+
+import NoteSettings from "./NoteSettings";
+
+import { NoteProps } from "../../../types/Notes";
 
 const ContentSection: React.FC = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
@@ -14,8 +17,6 @@ const ContentSection: React.FC = () => {
   const showDirectory = useUiStore((state) => state.showDirectory);
 
   const setActiveNote = useActiveStore((state) => state.setActiveNote);
-
-  const [editor, toggleEditor] = useState<boolean>(false);
 
   const [title, setTitle] = useState<string>("");
   const [contents, setContents] = useState<string>("");
@@ -31,20 +32,21 @@ const ContentSection: React.FC = () => {
         setActiveNote(noteContents);
         setTitle(noteContents.title);
         setContents(noteContents.content);
-        toggleEditor(true);
       });
+    } else {
+      setTitle("");
+      setContents("");
     }
   }, [activeNoteTitle]);
 
   useEffect(() => {
+    countWordsAndChars();
     if (contents.length > 0) {
       const updatedNote: NoteProps = { ...activeNote, content: contents };
-      writeToNote(activeNoteTitle, JSON.stringify(updatedNote));
+      writeToNote(activeNoteTitle, JSON.stringify(updatedNote)).then(() =>
+        setActiveNote(updatedNote)
+      );
     }
-  }, [contents]);
-
-  useEffect(() => {
-    countWordsAndChars();
   }, [contents]);
 
   useEffect(() => {
@@ -69,15 +71,19 @@ const ContentSection: React.FC = () => {
   const updateTitle = () => {
     if (
       title.length < 1 ||
-      (allNotes.map((file) => file.name).includes(title + ".json") &&
-        title != activeNoteTitle.split(".json")[0])
+      (allNotes
+        .map((file) => file.name?.toLowerCase())
+        .includes(title.trim().toLowerCase() + ".json") &&
+        title.trim() != activeNoteTitle.split(".json")[0])
     ) {
       setTitleError(true);
       return;
     } else {
-      const updatedNote: NoteProps = { ...activeNote, title: title };
-      writeToNote(activeNoteTitle, JSON.stringify(updatedNote));
-      renameNote(activeNoteTitle, title);
+      const updatedNote: NoteProps = { ...activeNote, title: title.trim() };
+      writeToNote(activeNoteTitle, JSON.stringify(updatedNote)).then(() => {
+        renameNote(activeNoteTitle, title);
+        setActiveNote(updatedNote);
+      });
     }
   };
 
@@ -88,10 +94,13 @@ const ContentSection: React.FC = () => {
         (showDirectory ? "rounded-tl-xl" : ``)
       }
     >
-      <div className="absolute right-3 top-3 text-xs text-gray-400">
-        words : {wordCount}, characters : {charCount}
-      </div>
-      {!!editor && (
+      <NoteSettings />
+      {activeNoteTitle && (
+        <span className="absolute right-3 bottom-3 text-xs text-gray-400">
+          words : {wordCount}, characters : {charCount}
+        </span>
+      )}
+      {!!activeNoteTitle && (
         <div className="h-full relative select-text">
           <input
             className={
@@ -106,6 +115,7 @@ const ContentSection: React.FC = () => {
           <textarea
             className="h-5/6 overflow-y-scroll w-full p-4 outline-none bg-inherit resize-none text-gray-300 leading-relaxed"
             onChange={(e) => setContents(e.target.value)}
+            spellCheck={false}
             value={contents}
           />
         </div>

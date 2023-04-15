@@ -1,5 +1,6 @@
 import { create } from "zustand";
-import { AppSettingsProps } from "../../types/Notes";
+
+import { AppSettingsProps } from "../../types/Settings";
 
 interface SettingsStoreProps {
   appSettings: AppSettingsProps;
@@ -10,6 +11,7 @@ export const useSettingsStore = create<SettingsStoreProps>()((set) => ({
   appSettings: {
     lastOpened: "",
     notesCreated: 0,
+    notesDeleted: 0,
   },
   setAppSettings: (settings) => set({ appSettings: settings }),
 }));

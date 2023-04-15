@@ -1,13 +1,15 @@
 import { appWindow } from "@tauri-apps/api/window";
 import { useEffect, useState } from "react";
+
+import { version } from "../../../package.json";
+
+import { useUiStore } from "../../store/UiStore";
+
 import { AiOutlineMinus } from "react-icons/ai";
 import { BiSquare } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { RiFocusFill } from "react-icons/ri";
 import { TbFocus } from "react-icons/tb";
-import { useUiStore } from "../../store/UiStore";
-
-import { version } from "../../../package.json";
 
 const TitleBar = () => {
   const [fullscreen, setFullscreen] = useState<boolean>();
@@ -30,8 +32,8 @@ const TitleBar = () => {
             Notedown v{version}
           </span>
         )}
-        <div
-          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-600 hover:text-white"
+        <span
+          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-700 hover:text-white"
           onClick={() => UiStore.setShowDirectory()}
           title={
             UiStore.showDirectory
@@ -44,18 +46,24 @@ const TitleBar = () => {
           ) : (
             <RiFocusFill size={16} />
           )}
-        </div>
+        </span>
+        {/* <span
+          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-700 hover:text-white"
+          title="Settings [COMING on 0.5.0]"
+        >
+          <FiSettings size={15} />
+        </span> */}
       </div>
       <div className="flex h-full">
         <div
-          className="grid place-items-center w-10 h-full hover:bg-zinc-600 hover:text-white"
+          className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
           onClick={() => appWindow.minimize()}
         >
           <AiOutlineMinus />
         </div>
         {!!fullscreen ? (
           <div
-            className="grid place-items-center w-10 h-full hover:bg-zinc-600 hover:text-white"
+            className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
             onClick={() => {
               appWindow.unmaximize();
               setFullscreen(!fullscreen);
@@ -65,7 +73,7 @@ const TitleBar = () => {
           </div>
         ) : (
           <div
-            className="grid place-items-center w-10 h-full hover:bg-zinc-600 hover:text-white"
+            className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
             onClick={() => {
               appWindow.maximize();
               setFullscreen(!fullscreen);

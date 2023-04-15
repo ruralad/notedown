@@ -1,14 +1,13 @@
-import { renameFile, writeTextFile } from "@tauri-apps/api/fs";
+import { removeFile, renameFile, writeTextFile } from "@tauri-apps/api/fs";
+import { v4 as uuidv4 } from "uuid";
+
 import { useActiveStore, useNoteStore } from "../store/NoteStore";
+
 import { getNotedownFolder } from "./DirectoryUtils";
 import { readNotedownFolder } from "./ReadUtils";
 
-import { v4 as uuidv4 } from "uuid";
 import { NoteProps } from "../../types/Notes";
 
-/**
- * creates a new note in the Notedown
- */
 export const createNewNote = async (totalNotes: number) => {
   const noteName = `Note - ${useNoteStore.getState().notes.length + 1}.json`;
 
@@ -39,4 +38,14 @@ export const renameNote = async (noteName: string, newNoteName: string) => {
       useNoteStore.getState().updateNotes(notes);
     })
   );
+};
+
+export const deleteNote = async (noteName: string) => {
+  const folder = await getNotedownFolder();
+  useActiveStore.getState().setActiveNoteTitle("");
+  await removeFile(folder + `\\` + noteName).then(() => {
+    readNotedownFolder().then((notes) => {
+      useNoteStore.getState().updateNotes(notes);
+    });
+  });
 };

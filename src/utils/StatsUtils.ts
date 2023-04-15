@@ -1,6 +1,8 @@
 import { readTextFile, writeTextFile } from "@tauri-apps/api/fs";
-import { AppSettingsProps } from "../../types/Notes";
+
 import { getNotedownFolder } from "./DirectoryUtils";
+
+import { AppSettingsProps } from "../../types/Settings";
 
 export const readAppSettings = async () => {
   const folder = await getNotedownFolder();
@@ -13,6 +15,18 @@ export const updateNotesCount = async (currentSettings: AppSettingsProps) => {
   const newSettings: AppSettingsProps = {
     ...currentSettings,
     notesCreated: currentSettings.notesCreated + 1,
+  };
+  updateAppSettings(newSettings);
+  return newSettings;
+};
+
+export const updateDeletedNotesCount = async (
+  currentSettings: AppSettingsProps
+) => {
+  const newSettings: AppSettingsProps = {
+    ...currentSettings,
+    notesDeleted: currentSettings.notesDeleted + 1,
+    lastOpened: "",
   };
   updateAppSettings(newSettings);
   return newSettings;
