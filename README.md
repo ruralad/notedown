@@ -38,7 +38,7 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  npm install
+  pnpm install
 ```
 
 Note : Follow [this guide](https://tauri.studio/en/docs/getting-started/intro/#setting-up-your-environment) to set up Tauri environment
@@ -46,5 +46,5 @@ Note : Follow [this guide](https://tauri.studio/en/docs/getting-started/intro/#s
 Start the server
 
 ```bash
-  npm run tauri dev
+  pnpm tauri dev
 ```
