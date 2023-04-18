@@ -9,12 +9,16 @@ import { renameNote, writeToNote } from "../../utils/WriteUtils";
 import NoteSettings from "./NoteSettings";
 
 import { NoteProps } from "../../../types/Notes";
+import { useEditorStore } from "../../store/EditorStore";
+import MainEditor from "./MainEditor";
+import Title from "./Title";
 
 const ContentSection: React.FC = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
   const activeNote = useActiveStore((state) => state.activeNote);
   const allNotes = useNoteStore((state) => state.notes);
   const showDirectory = useUiStore((state) => state.showDirectory);
+  const editorStyle = useEditorStore((state) => state.editorStyle);
 
   const setActiveNote = useActiveStore((state) => state.setActiveNote);
 
@@ -102,22 +106,13 @@ const ContentSection: React.FC = () => {
       )}
       {!!activeNoteTitle && (
         <div className="h-full relative select-text">
-          <input
-            className={
-              "outline-none bg-inherit text-3xl font-bold p-4 pb-6 h-10 " +
-              (titleError ? `border-b-2 border-b-red-600` : ``)
-            }
-            spellCheck={false}
-            onChange={(e) => setTitle(e.target.value)}
-            onBlur={updateTitle}
-            value={title}
+          <Title
+            setTitle={setTitle}
+            title={title}
+            updateTitle={updateTitle}
+            titleError={titleError}
           />
-          <textarea
-            className="h-5/6 overflow-y-scroll w-full p-4 outline-none bg-inherit resize-none text-gray-300 leading-relaxed"
-            onChange={(e) => setContents(e.target.value)}
-            spellCheck={false}
-            value={contents}
-          />
+          <MainEditor setContents={setContents} contents={contents} />
         </div>
       )}
     </section>

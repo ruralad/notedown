@@ -12,7 +12,12 @@
 <div align="center">
 
 [![GitHub package.json version](https://img.shields.io/github/package-json/v/ruralad/notedown?color=%40&label=stable)](https://github.com/ruralad/notedown/releases/latest)
-[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ruralad/notedown/dev?color=%21&label=latest)](https://github.com/ruralad/notedown/tree/dev) ![GitHub issues](https://img.shields.io/github/issues-raw/ruralad/notedown)
+[![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/ruralad/notedown/dev?color=%21&label=latest)](https://github.com/ruralad/notedown/tree/dev)
+
+</div>
+<div align="center">
+
+![GitHub issues](https://img.shields.io/github/issues-raw/ruralad/notedown) ![GitHub all releases](https://img.shields.io/github/downloads/ruralad/notedown/total)
 
 </div>
 
