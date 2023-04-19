@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react";
 
 import { useActiveStore, useNoteStore } from "../../store/NoteStore";
+import { useSettingsStore } from "../../store/SettingsStore";
 import { useUiStore } from "../../store/UiStore";
 
 import { readNote } from "../../utils/ReadUtils";
+import { updateAppSettings } from "../../utils/StatsUtils";
 import { renameNote, writeToNote } from "../../utils/WriteUtils";
 
+import MainEditor from "./MainEditor";
 import NoteSettings from "./NoteSettings";
+import Title from "./Title";
 
 import { NoteProps } from "../../../types/Notes";
-import { useEditorStore } from "../../store/EditorStore";
-import MainEditor from "./MainEditor";
-import Title from "./Title";
+import { AppSettingsProps } from "../../../types/Settings";
 
 const ContentSection: React.FC = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
   const activeNote = useActiveStore((state) => state.activeNote);
   const allNotes = useNoteStore((state) => state.notes);
   const showDirectory = useUiStore((state) => state.showDirectory);
-  const editorStyle = useEditorStore((state) => state.editorStyle);
+  const appSettings = useSettingsStore((state) => state.appSettings);
 
   const setActiveNote = useActiveStore((state) => state.setActiveNote);
 
@@ -86,6 +88,11 @@ const ContentSection: React.FC = () => {
       const updatedNote: NoteProps = { ...activeNote, title: title.trim() };
       writeToNote(activeNoteTitle, JSON.stringify(updatedNote)).then(() => {
         renameNote(activeNoteTitle, title);
+        const newSettings: AppSettingsProps = {
+          ...appSettings,
+          lastOpened: title + ".json",
+        };
+        updateAppSettings(newSettings);
         setActiveNote(updatedNote);
       });
     }
