@@ -1,35 +1,48 @@
 import * as Dialog from "@radix-ui/react-dialog";
 
-import { useEditorStore } from "../../store/EditorStore";
 import { useActiveStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
 
-import { updateDeletedNotesCount } from "../../utils/StatsUtils";
+import {
+  updateAppSettings,
+  updateDeletedNotesCount,
+} from "../../utils/StatsUtils";
 import { deleteNote } from "../../utils/WriteUtils";
 
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsMarkdown } from "react-icons/bs";
 import { FiEdit3 } from "react-icons/fi";
+import { AppSettingsProps } from "../../../types/Settings";
 
 const NoteSettings = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
+  const appSettings = useSettingsStore((state) => state.appSettings);
 
-  const editorSettings = useEditorStore();
+  const setAppSettings = useSettingsStore((state) => state.setAppSettings);
+
+  const handleEditorStyle = (style: "code" | "markdown") => {
+    const newSettings: AppSettingsProps = {
+      ...appSettings,
+      editorStyle: style,
+    };
+    updateAppSettings(newSettings);
+    setAppSettings(newSettings);
+  };
 
   if (activeNoteTitle.length > 0) {
     return (
       <div className="absolute z-999 flex gap-3 right-3 top-3 text-gray-400">
-        {!(editorSettings.editorStyle === "markdown") ? (
+        {!(appSettings.editorStyle === "markdown") ? (
           <BsMarkdown
             className="hover:cursor-pointer"
             title="View as Markdown"
-            onClick={() => editorSettings.setEditorStyle("markdown")}
+            onClick={() => handleEditorStyle("markdown")}
           />
         ) : (
           <FiEdit3
             className="hover:cursor-pointer"
             title="Switch to Editor"
-            onClick={() => editorSettings.setEditorStyle("code")}
+            onClick={() => handleEditorStyle("code")}
           />
         )}
         {/* <BiExport

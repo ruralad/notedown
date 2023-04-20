@@ -23,6 +23,7 @@ export const verifyNotedownFolder = async () => {
     lastOpened: "",
     notesCreated: 0,
     notesDeleted: 0,
+    editorStyle: "code",
   };
 
   await createDir("Notedown", {
