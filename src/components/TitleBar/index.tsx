@@ -10,16 +10,39 @@ import { BiSquare } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { RiFocusFill } from "react-icons/ri";
 import { TbFocus } from "react-icons/tb";
+import { AppSettingsProps } from "../../../types/Settings";
+import { useSettingsStore } from "../../store/SettingsStore";
+import { updateAppSettings } from "../../utils/StatsUtils";
 
 const TitleBar = () => {
-  const [fullscreen, setFullscreen] = useState<boolean>();
+  const [fullscreen, setFullscreen] = useState<boolean>(false);
   const UiStore = useUiStore();
+  const settingsStore = useSettingsStore();
 
   useEffect(() => {
-    appWindow.isMaximized().then((fullscreenStatus) => {
-      setFullscreen(fullscreenStatus);
-    });
+    setFullscreen(settingsStore.appSettings.isFullscreen);
   }, []);
+
+  const handleUnMaximize = async () => {
+    appWindow.unmaximize();
+    const newSettings: AppSettingsProps = {
+      ...settingsStore.appSettings,
+      isFullscreen: false,
+    };
+    settingsStore.setAppSettings(newSettings);
+    setFullscreen(false);
+  };
+
+  const handleMaximize = async () => {
+    appWindow.maximize();
+    const newSettings: AppSettingsProps = {
+      ...settingsStore.appSettings,
+      isFullscreen: true,
+    };
+    settingsStore.setAppSettings(newSettings);
+    updateAppSettings(newSettings);
+    setFullscreen(true);
+  };
 
   return (
     <div
@@ -61,29 +84,12 @@ const TitleBar = () => {
         >
           <AiOutlineMinus />
         </div>
-        {!!fullscreen ? (
-          <div
-            className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
-            onClick={() => {
-              appWindow.unmaximize();
-              setFullscreen(!fullscreen);
-            }}
-          >
-            <BiSquare size={13} />
-          </div>
-        ) : (
-          <div
-            className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
-            onClick={() => {
-              appWindow.maximize();
-              setFullscreen(!fullscreen);
-            }}
-          >
-            {" "}
-            <BiSquare size={13} />
-          </div>
-        )}
-
+        <div
+          className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
+          onClick={!!fullscreen ? handleUnMaximize : handleMaximize}
+        >
+          <BiSquare size={13} />
+        </div>
         <div
           className="grid place-items-center w-10 h-full hover:bg-red-600 hover:text-white"
           onClick={() => appWindow.close()}

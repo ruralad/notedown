@@ -19,7 +19,7 @@ const DirectorySection: React.FC = () => {
           }}
           initial={{ width: 0 }}
           exit={{ x: -300, width: 0 }}
-          className="w-1/3 h-full select-none"
+          className="w-1/3 h-full select-none overflow-y-scroll"
         >
           <div className="p-6">
             <Header />

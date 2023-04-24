@@ -1,11 +1,11 @@
+import { appWindow } from "@tauri-apps/api/window";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 
 import { useActiveStore, useNoteStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
 
-import { readNotedownFolder } from "../../utils/ReadUtils";
-import { readAppSettings, updateAppSettings } from "../../utils/StatsUtils";
+import { updateAppSettings } from "../../utils/StatsUtils";
 
 import { AppSettingsProps } from "../../../types/Settings";
 
@@ -21,20 +21,12 @@ const Notes: React.FC = () => {
   );
 
   useEffect(() => {
-    readNotedownFolder().then((notes) => {
-      updateNotes(notes);
-    });
-    readAppSettings().then((settings) => {
-      setAppSettings(settings);
-    });
-  }, []);
-
-  useEffect(() => {
     if (appSettings.lastOpened.length > 0)
       setActiveNoteTitle(appSettings.lastOpened);
   }, [appSettings]);
 
-  const handleNoteClick = (noteName: string) => {
+  const handleNoteClick = async (noteName: string) => {
+    await appWindow.setTitle(`${noteName.split(".json")[0]} - Notedown`);
     const newSettings: AppSettingsProps = {
       ...appSettings,
       lastOpened: noteName,

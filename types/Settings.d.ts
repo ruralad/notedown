@@ -3,4 +3,5 @@ export type AppSettingsProps = {
   notesCreated: number;
   notesDeleted: number;
   editorStyle: "code" | "markdown";
+  isFullscreen: boolean;
 };
