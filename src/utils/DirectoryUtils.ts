@@ -24,6 +24,7 @@ export const verifyNotedownFolder = async () => {
     notesCreated: 0,
     notesDeleted: 0,
     editorStyle: "code",
+    isFullscreen: false,
   };
 
   await createDir("Notedown", {

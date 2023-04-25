@@ -32,6 +32,7 @@ const Notes: React.FC = () => {
       lastOpened: noteName,
     };
     updateAppSettings(newSettings);
+    setAppSettings(newSettings);
     setActiveNoteTitle(noteName);
   };
 
