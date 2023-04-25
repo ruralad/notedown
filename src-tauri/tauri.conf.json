@@ -36,7 +36,9 @@
         "unmaximize": true,
         "unminimize": true,
         "startDragging": true,
-        "setIgnoreCursorEvents": true
+        "setIgnoreCursorEvents": true,
+        "setTitle": true,
+        "setFullscreen": true
       }
     },
     "bundle": {
