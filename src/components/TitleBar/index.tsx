@@ -3,16 +3,18 @@ import { useEffect, useState } from "react";
 
 import { version } from "../../../package.json";
 
+import { useSettingsStore } from "../../store/SettingsStore";
 import { useUiStore } from "../../store/UiStore";
+
+import { updateAppSettings } from "../../utils/StatsUtils";
 
 import { AiOutlineMinus } from "react-icons/ai";
 import { BiSquare } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { RiFocusFill } from "react-icons/ri";
 import { TbFocus } from "react-icons/tb";
+
 import { AppSettingsProps } from "../../../types/Settings";
-import { useSettingsStore } from "../../store/SettingsStore";
-import { updateAppSettings } from "../../utils/StatsUtils";
 
 const TitleBar = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);

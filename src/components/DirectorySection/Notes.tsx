@@ -11,7 +11,6 @@ import { AppSettingsProps } from "../../../types/Settings";
 
 const Notes: React.FC = () => {
   const allNotes = useNoteStore((state) => state.notes);
-  const updateNotes = useNoteStore((state) => state.updateNotes);
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
   const appSettings = useSettingsStore((state) => state.appSettings);
 

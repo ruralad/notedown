@@ -1,7 +1,9 @@
 import { appWindow } from "@tauri-apps/api/window";
 import { useEffect } from "react";
+
 import { useNoteStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
+
 import { readNotedownFolder } from "../../utils/ReadUtils";
 import { readAppSettings } from "../../utils/StatsUtils";
 
@@ -10,6 +12,7 @@ const Loading = () => {
 
   const updateNotes = useNoteStore((state) => state.updateNotes);
 
+  // Load and verify data
   useEffect(() => {
     readNotedownFolder().then((notes) => {
       updateNotes(notes);
