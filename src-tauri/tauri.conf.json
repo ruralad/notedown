@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Notedown",
-    "version": "0.3.0"
+    "version": "0.4.0"
   },
   "tauri": {
     "allowlist": {
@@ -36,7 +36,9 @@
         "unmaximize": true,
         "unminimize": true,
         "startDragging": true,
-        "setIgnoreCursorEvents": true
+        "setIgnoreCursorEvents": true,
+        "setTitle": true,
+        "setFullscreen": true
       }
     },
     "bundle": {
