@@ -1,4 +1,3 @@
-import "@dotlottie/player-component";
 import { useEffect, useState } from "react";
 import ContentSection from "./components/ContentSection";
 import DirectorySection from "./components/DirectorySection";
