@@ -1,18 +1,18 @@
 import * as Dialog from "@radix-ui/react-dialog";
 
-import { useActiveStore } from "../../store/NoteStore";
-import { useSettingsStore } from "../../store/SettingsStore";
+import { useActiveStore } from "../../../store/NoteStore";
+import { useSettingsStore } from "../../../store/SettingsStore";
 
 import {
   updateAppSettings,
   updateDeletedNotesCount,
-} from "../../utils/StatsUtils";
-import { deleteNote } from "../../utils/WriteUtils";
+} from "../../../utils/StatsUtils";
+import { deleteNote } from "../../../utils/WriteUtils";
 
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsMarkdown } from "react-icons/bs";
 import { FiEdit3 } from "react-icons/fi";
-import { AppSettingsProps } from "../../../types/Settings";
+import { AppSettingsProps } from "../../../../types/Settings";
 
 const NoteSettings = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
