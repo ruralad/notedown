@@ -1,15 +1,32 @@
 import { appWindow } from "@tauri-apps/api/window";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import { useNoteStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
+
 import { readNotedownFolder } from "../../utils/ReadUtils";
 import { readAppSettings } from "../../utils/StatsUtils";
 
-const Loading = () => {
+type LoadingProps = {
+  setShowContent: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const Loading: React.FC<LoadingProps> = (props) => {
   const settingsStore = useSettingsStore();
 
   const updateNotes = useNoteStore((state) => state.updateNotes);
 
+  const [contentLoaded, setContentLoaded] = useState(false);
+
+  //1 second delay before showing content
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      if (contentLoaded) props.setShowContent(true);
+    }, 1000);
+    return () => clearTimeout(timeOut);
+  }, [contentLoaded]);
+
+  // Load and verify data
   useEffect(() => {
     readNotedownFolder().then((notes) => {
       updateNotes(notes);
@@ -18,6 +35,7 @@ const Loading = () => {
       settingsStore.setAppSettings(settings);
       if (settings.isFullscreen) appWindow.maximize();
       else appWindow.unmaximize();
+      setContentLoaded(true);
     });
   }, []);
 
