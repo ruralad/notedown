@@ -53,3 +53,7 @@ Start the server
 ```bash
   pnpm tauri dev
 ```
+
+## License
+
+Licensed under the [MIT license](https://github.com/ruralad/notedown/blob/main/LICENSE).

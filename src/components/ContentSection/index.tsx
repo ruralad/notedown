@@ -9,12 +9,12 @@ import { updateAppSettings } from "../../utils/StatsUtils";
 import { renameNote, writeToNote } from "../../utils/WriteUtils";
 
 import MainEditor from "./MainEditor";
+import NoteSettings from "./NoteUtils/NoteSettings";
 import Title from "./Title";
-import NoteSettings from "./Utils/NoteSettings";
 
 import { NoteProps } from "../../../types/Notes";
 import { AppSettingsProps } from "../../../types/Settings";
-import NoteDetails from "./Utils/NoteDetails";
+import NoteDetails from "./NoteUtils/NoteDetails";
 
 const ContentSection: React.FC = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
