@@ -33,3 +33,15 @@ export const useActiveStore = create<ActiveState>()((set) => ({
     set((state) => ({ activeNoteTitle: noteName })),
   setActiveNote: (note) => set((state) => ({ activeNote: note })),
 }));
+
+type NoteDetailsProps = {
+  line: number;
+  column: number;
+  setLineAndColumn: (line: number, column: number) => void;
+};
+
+export const useNoteDetailsStore = create<NoteDetailsProps>()((set) => ({
+  line: 0,
+  column: 0,
+  setLineAndColumn: (line, column) => set((state) => ({ line, column })),
+}));

@@ -51,13 +51,13 @@ const NoteSettings = () => {
       <div className="absolute z-999 flex gap-3 right-3 top-3 text-gray-400">
         {!!(appSettings.editorStyle === "markdown") ? (
           <FiEdit3
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer mt-[1px]"
             title="Switch to Editor"
             onClick={() => handleEditorStyle("code")}
           />
         ) : (
           <BsMarkdown
-            className="hover:cursor-pointer"
+            className="hover:cursor-pointer mt-[1px]"
             title="View as Markdown"
             onClick={() => handleEditorStyle("markdown")}
           />

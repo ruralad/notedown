@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 
+import { useNoteDetailsStore } from "../../../store/NoteStore";
+
 type NoteDetailsProps = {
   contents: string;
 };
 
 const NoteDetails: React.FC<NoteDetailsProps> = (props) => {
+  const noteDetailsStore = useNoteDetailsStore();
+
   const [wordCount, setWordCount] = useState<number>(0);
   const [charCount, setCharCount] = useState<number>(0);
 
@@ -26,7 +30,8 @@ const NoteDetails: React.FC<NoteDetailsProps> = (props) => {
 
   return (
     <span className="absolute right-3 bottom-3 text-xs text-gray-400">
-      words : {wordCount}, characters : {charCount}
+      Ln {noteDetailsStore.line}, Col {noteDetailsStore.column} | Words :{" "}
+      {wordCount}, Chars : {charCount}
     </span>
   );
 };

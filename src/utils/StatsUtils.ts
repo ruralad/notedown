@@ -39,3 +39,16 @@ export const updateAppSettings = async (newSettings: AppSettingsProps) => {
     JSON.stringify(newSettings)
   );
 };
+
+export const getLineAndColumn = (
+  e:
+    | React.KeyboardEvent<HTMLTextAreaElement>
+    | React.MouseEvent<HTMLTextAreaElement, MouseEvent>
+) => {
+  const textLines = e.currentTarget.value
+    .substring(0, e.currentTarget.selectionStart)
+    .split("\n");
+  const line = textLines.length;
+  const column = textLines[textLines.length - 1].length;
+  return { line, column };
+};
