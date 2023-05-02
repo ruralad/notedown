@@ -30,8 +30,8 @@ const NoteDetails: React.FC<NoteDetailsProps> = (props) => {
 
   return (
     <span className="absolute right-3 bottom-3 text-xs text-gray-400">
-      Ln {noteDetailsStore.line}, Col {noteDetailsStore.column} | Words :{" "}
-      {wordCount}, Chars : {charCount}
+      Ln {noteDetailsStore.line} Col {noteDetailsStore.column} | Words{" "}
+      {wordCount} Chars {charCount}
     </span>
   );
 };
