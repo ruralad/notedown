@@ -6,11 +6,11 @@ import Header from "./Header";
 import Notes from "./Notes";
 
 const DirectorySection: React.FC = () => {
-  const showDirectory = useUiStore((state) => state.showDirectory);
+  const focusMode = useUiStore((state) => state.focusMode);
 
   return (
     <AnimatePresence initial={false}>
-      {!!showDirectory && (
+      {!!focusMode && (
         <motion.section
           key="directory"
           animate={{

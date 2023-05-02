@@ -9,17 +9,16 @@ import { IoCreateOutline } from "react-icons/io5";
 
 const Header: React.FC = () => {
   const updateNotes = useNoteStore((state) => state.updateNotes);
-  const appSettings = useSettingsStore((state) => state.appSettings);
+  const settings = useSettingsStore();
 
-  const setAppSettings = useSettingsStore((state) => state.setAppSettings);
   const setActiveNoteTitle = useActiveStore(
     (state) => state.setActiveNoteTitle
   );
 
   const createNote = async () => {
-    createNewNote(appSettings.notesCreated).then(async (noteName) => {
-      await updateNotesCount(appSettings).then((newsettings) => {
-        setAppSettings(newsettings);
+    createNewNote(settings.appSettings.notesCreated).then(async (noteName) => {
+      await updateNotesCount(settings.appSettings).then((newsettings) => {
+        settings.setAppSettings(newsettings);
       });
       setActiveNoteTitle(noteName);
     });

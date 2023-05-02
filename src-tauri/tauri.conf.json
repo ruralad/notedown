@@ -39,6 +39,11 @@
         "setIgnoreCursorEvents": true,
         "setTitle": true,
         "setFullscreen": true
+      },
+      "clipboard": {
+        "all": false,
+        "readText": false,
+        "writeText": true
       }
     },
     "bundle": {

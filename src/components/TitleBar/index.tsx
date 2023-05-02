@@ -3,16 +3,18 @@ import { useEffect, useState } from "react";
 
 import { version } from "../../../package.json";
 
+import { useSettingsStore } from "../../store/SettingsStore";
 import { useUiStore } from "../../store/UiStore";
+
+import { updateAppSettings } from "../../utils/StatsUtils";
 
 import { AiOutlineMinus } from "react-icons/ai";
 import { BiSquare } from "react-icons/bi";
 import { CgClose } from "react-icons/cg";
 import { RiFocusFill } from "react-icons/ri";
 import { TbFocus } from "react-icons/tb";
+
 import { AppSettingsProps } from "../../../types/Settings";
-import { useSettingsStore } from "../../store/SettingsStore";
-import { updateAppSettings } from "../../utils/StatsUtils";
 
 const TitleBar = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);
@@ -50,21 +52,19 @@ const TitleBar = () => {
       className="max-h-10 w-full text-gray-400 flex justify-between items-center"
     >
       <div className="h-full flex items-center pl-3">
-        {UiStore.showDirectory && (
+        {UiStore.focusMode && (
           <span className="text-xs mr-2 pointer-events-none">
             Notedown v{version}
           </span>
         )}
         <span
           className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-700 hover:text-white"
-          onClick={() => UiStore.setShowDirectory()}
+          onClick={() => UiStore.setFocusMode()}
           title={
-            UiStore.showDirectory
-              ? "Switch to Focus Mode"
-              : "Switch to Normal Mode"
+            UiStore.focusMode ? "Switch to Focus Mode" : "Switch to Normal Mode"
           }
         >
-          {UiStore.showDirectory ? (
+          {UiStore.focusMode ? (
             <TbFocus size={16} />
           ) : (
             <RiFocusFill size={16} />
