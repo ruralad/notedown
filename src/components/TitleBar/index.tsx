@@ -49,7 +49,7 @@ const TitleBar = () => {
   return (
     <div
       data-tauri-drag-region
-      className="max-h-10 w-full text-gray-400 flex justify-between items-center"
+      className="max-h-10 w-full text-muted-foreground flex justify-between items-center"
     >
       <div className="h-full flex items-center pl-3">
         {UiStore.focusMode && (
@@ -58,10 +58,12 @@ const TitleBar = () => {
           </span>
         )}
         <span
-          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-700 hover:text-white"
+          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-accent hover:text-primary"
           onClick={() => UiStore.setFocusMode()}
           title={
-            UiStore.focusMode ? "Switch to Focus Mode" : "Switch to Normal Mode"
+            UiStore.focusMode
+              ? "Switch to Focus Mode"
+              : "Switch to Default Mode"
           }
         >
           {UiStore.focusMode ? (
@@ -70,28 +72,22 @@ const TitleBar = () => {
             <RiFocusFill size={16} />
           )}
         </span>
-        {/* <span
-          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-zinc-700 hover:text-white"
-          title="Settings [COMING on 0.5.0]"
-        >
-          <FiSettings size={15} />
-        </span> */}
       </div>
       <div className="flex h-full">
         <div
-          className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
+          className="grid place-items-center w-10 h-full hover:bg-accent hover:text-primary"
           onClick={() => appWindow.minimize()}
         >
           <AiOutlineMinus />
         </div>
         <div
-          className="grid place-items-center w-10 h-full hover:bg-zinc-700 hover:text-white"
+          className="grid place-items-center w-10 h-full hover:bg-accent hover:text-primary"
           onClick={!!fullscreen ? handleUnMaximize : handleMaximize}
         >
           <BiSquare size={13} />
         </div>
         <div
-          className="grid place-items-center w-10 h-full hover:bg-red-600 hover:text-white"
+          className="grid place-items-center w-10 h-full hover:bg-red-600 hover:text-primary-foreground"
           onClick={() => appWindow.close()}
         >
           {" "}

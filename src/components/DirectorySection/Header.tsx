@@ -28,12 +28,12 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center w-full px-4 justify-between text-gray-200">
+    <div className="flex items-center w-full px-4 justify-between">
       <h1 className="text-2xl">All Notes</h1>
       <IoCreateOutline
         onClick={createNote}
         title="Create a new note"
-        className="text-xl hover:text-white hover:cursor-pointer"
+        className="text-xl hover:cursor-pointer"
       />
     </div>
   );
