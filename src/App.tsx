@@ -8,7 +8,7 @@ const App: React.FC = () => {
   const [showContent, setShowContent] = useState(false);
 
   return (
-    <main className="relative w-full h-screen flex flex-col bg-zinc-800 select-none overflow-hidden">
+    <main className="relative w-full h-screen flex flex-col bg-primary-foreground select-none overflow-hidden">
       <TitleBar />
       <div className="relative w-full h-full flex">
         {showContent ? (

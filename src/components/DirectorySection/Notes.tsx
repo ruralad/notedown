@@ -8,6 +8,7 @@ import { useSettingsStore } from "../../store/SettingsStore";
 import { updateAppSettings } from "../../utils/StatsUtils";
 
 import { AppSettingsProps } from "../../../types/Settings";
+import { ScrollArea } from "../ui/scroll-area";
 
 const Notes: React.FC = () => {
   const allNotes = useNoteStore((state) => state.notes);
@@ -37,12 +38,12 @@ const Notes: React.FC = () => {
 
   return (
     <div className="mt-10">
-      <ul>
+      <ScrollArea className="h-full w-full">
         <AnimatePresence>
           {allNotes &&
             allNotes.map((v, i) => {
               return (
-                <motion.li
+                <motion.div
                   variants={{
                     hidden: {
                       opacity: 0,
@@ -58,18 +59,18 @@ const Notes: React.FC = () => {
                   animate="visible"
                   custom={i}
                   className={
-                    "p-1 pl-4 m-2 hover:bg-zinc-900 hover:cursor-pointer rounded-lg " +
-                    (activeNoteTitle === v.name ? "bg-zinc-900" : "")
+                    "p-1 pl-4 m-2 hover:cursor-pointer hover:bg-accent rounded-lg " +
+                    (activeNoteTitle === v.name ? "bg-muted" : "")
                   }
                   key={v.name}
                   onClick={() => handleNoteClick(v.name as string)}
                 >
                   {v.name?.split(".json")[0]}
-                </motion.li>
+                </motion.div>
               );
             })}
         </AnimatePresence>
-      </ul>
+      </ScrollArea>
     </div>
   );
 };

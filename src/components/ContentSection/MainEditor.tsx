@@ -31,7 +31,7 @@ const MainEditor: React.FC<MainEditorProps> = (props) => {
     <div className="p-4 h-full overflow-y-scroll ">
       {editorStyle === "code" ? (
         <textarea
-          className="h-5/6 w-full outline-none bg-inherit resize-none text-gray-300 leading-relaxed"
+          className="h-5/6 w-full outline-none bg-inherit resize-none leading-relaxed"
           onChange={(e) => props.setContents(e.target.value)}
           onKeyUp={(e) => updateLineAndColumn(e)}
           onMouseUp={(e) => updateLineAndColumn(e)}
