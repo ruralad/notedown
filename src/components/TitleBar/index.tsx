@@ -15,12 +15,14 @@ import { RiFocusFill } from "react-icons/ri";
 import { TbFocus } from "react-icons/tb";
 
 import { AppSettingsProps } from "../../../types/Settings";
+import ThemeChanger from "./ThemeHandler";
 
 const TitleBar = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);
   const UiStore = useUiStore();
   const settingsStore = useSettingsStore();
 
+  //app starts minimized by default, check user settings to maximize or not
   useEffect(() => {
     setFullscreen(settingsStore.appSettings.isFullscreen);
   }, []);
@@ -72,6 +74,7 @@ const TitleBar = () => {
             <RiFocusFill size={16} />
           )}
         </span>
+        <ThemeChanger />
       </div>
       <div className="flex h-full">
         <div

@@ -14,6 +14,7 @@ export const useSettingsStore = create<SettingsStoreProps>()((set) => ({
     notesDeleted: 0,
     editorStyle: "code",
     isFullscreen: false,
+    theme: "system",
   },
   setAppSettings: (settings) => set({ appSettings: settings }),
 }));
