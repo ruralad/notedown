@@ -1,9 +1,10 @@
 import { appWindow } from "@tauri-apps/api/window";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import { useNoteStore } from "../../store/NoteStore";
-import { useSettingsStore } from "../../store/SettingsStore";
+import { useLoadingStore, useSettingsStore } from "../../store/SettingsStore";
 import { toggleTheme } from "../../utils/AppUtils";
+import { verifyNotedownFolder } from "../../utils/DirectoryUtils";
 
 import { readNotedownFolder } from "../../utils/ReadUtils";
 import { readAppSettings } from "../../utils/StatsUtils";
@@ -14,34 +15,30 @@ type LoadingProps = {
 
 const Loading: React.FC<LoadingProps> = (props) => {
   const settingsStore = useSettingsStore();
-
+  const loadingStore = useLoadingStore();
   const updateNotes = useNoteStore((state) => state.updateNotes);
-
-  const [contentLoaded, setContentLoaded] = useState(false);
 
   //1 second delay before showing content
   useEffect(() => {
     const timeOut = setTimeout(() => {
-      if (contentLoaded) props.setShowContent(true);
+      if (loadingStore.isContentLoaded) props.setShowContent(true);
     }, 1000);
     return () => clearTimeout(timeOut);
-  }, [contentLoaded]);
-
-  // Update theme on load and theme change
-  useEffect(() => {
-    toggleTheme(settingsStore.appSettings.theme);
-  }, [settingsStore.appSettings.theme]);
+  }, [loadingStore.isContentLoaded]);
 
   // Load and verify data
   useEffect(() => {
-    readNotedownFolder().then((notes) => {
-      updateNotes(notes);
-    });
-    readAppSettings().then((settings) => {
-      settingsStore.setAppSettings(settings);
-      if (settings.isFullscreen) appWindow.maximize();
-      else appWindow.unmaximize();
-      setContentLoaded(true);
+    verifyNotedownFolder().then(() => {
+      readNotedownFolder().then((notes) => {
+        updateNotes(notes);
+      });
+      readAppSettings().then((settings) => {
+        settingsStore.setAppSettings(settings);
+        if (settings.isFullscreen) appWindow.maximize();
+        else appWindow.unmaximize();
+        toggleTheme(settings.theme);
+        loadingStore.setIsContentLoaded(true);
+      });
     });
   }, []);
 

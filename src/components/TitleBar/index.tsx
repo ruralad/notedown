@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { version } from "../../../package.json";
 
-import { useSettingsStore } from "../../store/SettingsStore";
+import { useLoadingStore, useSettingsStore } from "../../store/SettingsStore";
 import { useUiStore } from "../../store/UiStore";
 
 import { updateAppSettings } from "../../utils/StatsUtils";
@@ -21,11 +21,13 @@ const TitleBar = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);
   const UiStore = useUiStore();
   const settingsStore = useSettingsStore();
+  const loadingStore = useLoadingStore();
 
   //app starts minimized by default, check user settings to maximize or not
   useEffect(() => {
-    setFullscreen(settingsStore.appSettings.isFullscreen);
-  }, []);
+    if (loadingStore.isContentLoaded)
+      setFullscreen(settingsStore.appSettings.isFullscreen);
+  }, [settingsStore.appSettings.isFullscreen]);
 
   const handleUnMaximize = async () => {
     appWindow.unmaximize();
