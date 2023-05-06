@@ -4,4 +4,5 @@ export type AppSettingsProps = {
   notesDeleted: number;
   editorStyle: "code" | "markdown";
   isFullscreen: boolean;
+  theme: "dark" | "light" | "system";
 };

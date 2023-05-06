@@ -86,7 +86,7 @@ const ContentSection: React.FC = () => {
   return (
     <section
       className={
-        "w-full h-full relative bg-zinc-900 px-14 py-14 text-gray-100 " +
+        "w-full h-full relative bg-card border-l border-t px-14 py-14 " +
         (focusMode ? "rounded-tl-xl" : ``)
       }
     >
