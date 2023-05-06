@@ -39,7 +39,7 @@ const MainEditor: React.FC<MainEditorProps> = (props) => {
           value={props.contents}
         />
       ) : (
-        <ReactMarkdown className="prose prose-invert">
+        <ReactMarkdown className="prose prose-invert text-primary">
           {props.contents}
         </ReactMarkdown>
       )}

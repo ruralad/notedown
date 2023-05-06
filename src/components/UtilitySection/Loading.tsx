@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import { useNoteStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
+import { toggleTheme } from "../../utils/AppUtils";
 
 import { readNotedownFolder } from "../../utils/ReadUtils";
 import { readAppSettings } from "../../utils/StatsUtils";
@@ -25,6 +26,11 @@ const Loading: React.FC<LoadingProps> = (props) => {
     }, 1000);
     return () => clearTimeout(timeOut);
   }, [contentLoaded]);
+
+  // Update theme on load and theme change
+  useEffect(() => {
+    toggleTheme(settingsStore.appSettings.theme);
+  }, [settingsStore.appSettings.theme]);
 
   // Load and verify data
   useEffect(() => {
