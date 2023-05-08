@@ -2,7 +2,7 @@
   "name": "notedown",
   "description": "local-first note taking app, with tauri",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.7.0-beta.1",
   "type": "module",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
@@ -28,7 +28,6 @@
     "lucide-react": "^0.194.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.8.0",
     "react-markdown": "^8.0.6",
     "tailwind-merge": "^1.12.0",
     "tailwindcss-animate": "^1.0.5",

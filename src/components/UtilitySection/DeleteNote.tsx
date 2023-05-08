@@ -1,4 +1,4 @@
-import { AiOutlineDelete } from "react-icons/ai";
+import { TrashIcon } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,9 +31,9 @@ const DeleteNote = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <AiOutlineDelete
+        <TrashIcon
+          size={15}
           className="hover:text-red-600 hover:cursor-pointer"
-          title="Delete Note"
         />
       </AlertDialogTrigger>
       <AlertDialogContent>

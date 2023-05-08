@@ -8,14 +8,17 @@ import { useUiStore } from "../../store/UiStore";
 
 import { updateAppSettings } from "../../utils/StatsUtils";
 
-import { AiOutlineMinus } from "react-icons/ai";
-import { BiSquare } from "react-icons/bi";
-import { CgClose } from "react-icons/cg";
-import { RiFocusFill } from "react-icons/ri";
-import { TbFocus } from "react-icons/tb";
+import ThemeChanger from "./ThemeHandler";
+
+import {
+  CircleDotIcon,
+  MinusIcon,
+  PlusCircleIcon,
+  SquareIcon,
+  XIcon,
+} from "lucide-react";
 
 import { AppSettingsProps } from "../../../types/Settings";
-import ThemeChanger from "./ThemeHandler";
 
 const TitleBar = () => {
   const [fullscreen, setFullscreen] = useState<boolean>(false);
@@ -71,9 +74,9 @@ const TitleBar = () => {
           }
         >
           {UiStore.focusMode ? (
-            <TbFocus size={16} />
+            <CircleDotIcon size={16} />
           ) : (
-            <RiFocusFill size={16} />
+            <PlusCircleIcon size={16} />
           )}
         </span>
         <ThemeChanger />
@@ -83,20 +86,20 @@ const TitleBar = () => {
           className="grid place-items-center w-10 h-full hover:bg-accent hover:text-primary"
           onClick={() => appWindow.minimize()}
         >
-          <AiOutlineMinus />
+          <MinusIcon size={16} />
         </div>
         <div
           className="grid place-items-center w-10 h-full hover:bg-accent hover:text-primary"
           onClick={!!fullscreen ? handleUnMaximize : handleMaximize}
         >
-          <BiSquare size={13} />
+          <SquareIcon size={13} />
         </div>
         <div
-          className="grid place-items-center w-10 h-full hover:bg-red-600 hover:text-primary-foreground"
+          className="grid place-items-center w-10 h-full hover:bg-red-600 hover:text-primary"
           onClick={() => appWindow.close()}
         >
           {" "}
-          <CgClose size={15} />
+          <XIcon size={16} />
         </div>
       </div>
     </div>
