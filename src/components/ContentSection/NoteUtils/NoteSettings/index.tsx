@@ -1,15 +1,16 @@
+import { useEffect, useState } from "react";
+
 import { useActiveStore } from "../../../../store/NoteStore";
 import { useSettingsStore } from "../../../../store/SettingsStore";
 
+import { copyToClipboard } from "../../../../utils/ReadUtils";
 import { updateAppSettings } from "../../../../utils/StatsUtils";
 
-import { useEffect, useState } from "react";
-import { BsMarkdown } from "react-icons/bs";
-import { FiEdit3 } from "react-icons/fi";
-import { TbClipboardCopy } from "react-icons/tb";
-import { AppSettingsProps } from "../../../../../types/Settings";
-import { copyToClipboard } from "../../../../utils/ReadUtils";
 import DeleteNote from "../../../UtilitySection/DeleteNote";
+
+import { BookDownIcon, ClipboardIcon, Edit3Icon } from "lucide-react";
+
+import { AppSettingsProps } from "../../../../../types/Settings";
 
 const NoteSettings = () => {
   const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
@@ -44,15 +45,15 @@ const NoteSettings = () => {
     return (
       <div className="absolute z-999 flex gap-3 right-3 top-3 text-muted-foreground">
         {!!(appSettings.editorStyle === "markdown") ? (
-          <FiEdit3
+          <Edit3Icon
+            size={16}
             className="hover:cursor-pointer mt-[1px] hover:text-primary"
-            title="Switch to Editor"
             onClick={() => handleEditorStyle("code")}
           />
         ) : (
-          <BsMarkdown
+          <BookDownIcon
+            size={15}
             className="hover:cursor-pointer mt-[1px] hover:text-primary"
-            title="View as Markdown"
             onClick={() => handleEditorStyle("markdown")}
           />
         )}
@@ -74,9 +75,9 @@ const NoteSettings = () => {
             />
           </svg>
         ) : (
-          <TbClipboardCopy
-            className="hover:cursor-pointer hover:text-primary"
-            title="Copy to Clipboard"
+          <ClipboardIcon
+            size={15}
+            className="hover:cursor-pointer hover:text-primary mt-[.5px]"
             onClick={handleCopyToClipboard}
           />
         )}

@@ -5,7 +5,7 @@ import { readNotedownFolder } from "../../utils/ReadUtils";
 import { updateNotesCount } from "../../utils/StatsUtils";
 import { createNewNote } from "../../utils/WriteUtils";
 
-import { IoCreateOutline } from "react-icons/io5";
+import { PlusIcon } from "lucide-react";
 
 const Header: React.FC = () => {
   const updateNotes = useNoteStore((state) => state.updateNotes);
@@ -30,10 +30,10 @@ const Header: React.FC = () => {
   return (
     <div className="flex items-center w-full px-4 justify-between">
       <h1 className="text-2xl">All Notes</h1>
-      <IoCreateOutline
+      <PlusIcon
+        size={16}
         onClick={createNote}
-        title="Create a new note"
-        className="text-xl hover:cursor-pointer"
+        className="hover:cursor-pointer"
       />
     </div>
   );
