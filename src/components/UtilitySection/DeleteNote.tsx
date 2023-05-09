@@ -10,12 +10,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../../components/ui/alert-dialog";
-import { useActiveStore } from "../../store/NoteStore";
+import { useActiveNoteStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
 import { updateDeletedNotesCount } from "../../utils/StatsUtils";
 import { deleteNote } from "../../utils/WriteUtils";
 const DeleteNote = () => {
-  const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
+  const activeNoteTitle = useActiveNoteStore((state) => state.activeNoteTitle);
   const appSettings = useSettingsStore((state) => state.appSettings);
 
   const setAppSettings = useSettingsStore((state) => state.setAppSettings);

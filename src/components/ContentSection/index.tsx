@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useActiveStore, useNoteStore } from "../../store/NoteStore";
+import { useActiveNoteStore, useNoteStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
 import { useUiStore } from "../../store/UiStore";
 
@@ -17,13 +17,13 @@ import { AppSettingsProps } from "../../../types/Settings";
 import NoteDetails from "./NoteUtils/NoteDetails";
 
 const ContentSection: React.FC = () => {
-  const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
-  const activeNote = useActiveStore((state) => state.activeNote);
+  const activeNoteTitle = useActiveNoteStore((state) => state.activeNoteTitle);
+  const activeNote = useActiveNoteStore((state) => state.activeNote);
   const allNotes = useNoteStore((state) => state.notes);
   const focusMode = useUiStore((state) => state.focusMode);
   const appSettings = useSettingsStore((state) => state.appSettings);
 
-  const setActiveNote = useActiveStore((state) => state.setActiveNote);
+  const setActiveNote = useActiveNoteStore((state) => state.setActiveNote);
 
   const [title, setTitle] = useState<string>("");
   const [contents, setContents] = useState<string>("");
