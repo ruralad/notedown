@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 
-import { useActiveStore } from "../../../../store/NoteStore";
+import { useActiveNoteStore } from "../../../../store/NoteStore";
 import { useSettingsStore } from "../../../../store/SettingsStore";
 
 import { copyToClipboard } from "../../../../utils/ReadUtils";
 import { updateAppSettings } from "../../../../utils/StatsUtils";
 
 import DeleteNote from "../../../UtilitySection/DeleteNote";
+import ExportNote from "../../../UtilitySection/ExportNote";
 
 import { BookDownIcon, ClipboardIcon, Edit3Icon } from "lucide-react";
 
 import { AppSettingsProps } from "../../../../../types/Settings";
 
 const NoteSettings = () => {
-  const activeNoteTitle = useActiveStore((state) => state.activeNoteTitle);
+  const activeNoteTitle = useActiveNoteStore((state) => state.activeNoteTitle);
   const appSettings = useSettingsStore((state) => state.appSettings);
 
   const setAppSettings = useSettingsStore((state) => state.setAppSettings);
@@ -44,6 +45,7 @@ const NoteSettings = () => {
   if (activeNoteTitle.length > 0) {
     return (
       <div className="absolute z-999 flex gap-3 right-3 top-3 text-muted-foreground">
+        <ExportNote />
         {!!(appSettings.editorStyle === "markdown") ? (
           <Edit3Icon
             size={16}
