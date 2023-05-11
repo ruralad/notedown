@@ -7,7 +7,7 @@ type NoteDetailsProps = {
 };
 
 const NoteDetails: React.FC<NoteDetailsProps> = (props) => {
-  const noteDetailsStore = useNoteDetailsStore();
+  const { column, line } = useNoteDetailsStore();
 
   const [wordCount, setWordCount] = useState<number>(0);
   const [charCount, setCharCount] = useState<number>(0);
@@ -30,8 +30,7 @@ const NoteDetails: React.FC<NoteDetailsProps> = (props) => {
 
   return (
     <span className="absolute right-3 bottom-3 text-xs text-muted-foreground">
-      Ln {noteDetailsStore.line} Col {noteDetailsStore.column} | Words{" "}
-      {wordCount} Chars {charCount}
+      Ln {line} Col {column} | Words {wordCount} Chars {charCount}
     </span>
   );
 };

@@ -1,4 +1,8 @@
+import { useActiveNoteStore } from "../../store/NoteStore";
+import { useSettingsStore } from "../../store/SettingsStore";
+
 import { TrashIcon } from "lucide-react";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,15 +14,13 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../../components/ui/alert-dialog";
-import { useActiveNoteStore } from "../../store/NoteStore";
-import { useSettingsStore } from "../../store/SettingsStore";
+
 import { updateDeletedNotesCount } from "../../utils/StatsUtils";
 import { deleteNote } from "../../utils/WriteUtils";
-const DeleteNote = () => {
-  const activeNoteTitle = useActiveNoteStore((state) => state.activeNoteTitle);
-  const appSettings = useSettingsStore((state) => state.appSettings);
 
-  const setAppSettings = useSettingsStore((state) => state.setAppSettings);
+const DeleteNote = () => {
+  const { activeNoteTitle } = useActiveNoteStore();
+  const { appSettings, setAppSettings } = useSettingsStore();
 
   const removeNote = () => {
     deleteNote(activeNoteTitle).then(() => {

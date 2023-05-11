@@ -1,29 +1,33 @@
-import { LaptopIcon, MoonIcon, SunIcon } from "lucide-react";
 import { useEffect } from "react";
-import { AppSettingsProps } from "../../../types/Settings";
+
 import { useLoadingStore, useSettingsStore } from "../../store/SettingsStore";
+
 import { toggleTheme, useSystemTheme } from "../../utils/AppUtils";
 import { updateAppSettings } from "../../utils/StatsUtils";
+
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
+import { LaptopIcon, MoonIcon, SunIcon } from "lucide-react";
+
+import { AppSettingsProps } from "../../../types/Settings";
+
 const ThemeChanger = () => {
-  const settingsStore = useSettingsStore();
+  const { appSettings, setAppSettings } = useSettingsStore();
+  const { isContentLoaded } = useLoadingStore();
+
   const prefersDarkMode = useSystemTheme();
-  const loadingStore = useLoadingStore();
+
   //detect system theme changes
   useEffect(() => {
-    if (
-      loadingStore.isContentLoaded &&
-      settingsStore.appSettings.theme === "system"
-    )
+    if (isContentLoaded && appSettings.theme === "system")
       switchTheme("system");
   }, [prefersDarkMode]);
 
   const switchTheme = (theme: "dark" | "light" | "system") => {
     let newSettings: AppSettingsProps;
     toggleTheme(theme);
-    newSettings = { ...settingsStore.appSettings, theme };
-    settingsStore.setAppSettings(newSettings);
+    newSettings = { ...appSettings, theme };
+    setAppSettings(newSettings);
     updateAppSettings(newSettings);
   };
 
@@ -34,11 +38,9 @@ const ThemeChanger = () => {
           className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-accent hover:text-primary hover:cursor-default"
           title="Change Theme"
         >
-          {settingsStore.appSettings.theme === "dark" && <MoonIcon size={16} />}
-          {settingsStore.appSettings.theme === "light" && <SunIcon size={16} />}
-          {settingsStore.appSettings.theme === "system" && (
-            <LaptopIcon size={16} />
-          )}
+          {appSettings.theme === "dark" && <MoonIcon size={16} />}
+          {appSettings.theme === "light" && <SunIcon size={16} />}
+          {appSettings.theme === "system" && <LaptopIcon size={16} />}
         </span>
       </PopoverTrigger>
       <PopoverContent className="w-fit flex flex-col text-sm p-2">

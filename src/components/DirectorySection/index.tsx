@@ -6,7 +6,7 @@ import Header from "./Header";
 import Notes from "./Notes";
 
 const DirectorySection: React.FC = () => {
-  const focusMode = useUiStore((state) => state.focusMode);
+  const { focusMode } = useUiStore();
 
   return (
     <AnimatePresence initial={false}>
