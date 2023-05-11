@@ -20,7 +20,7 @@ interface ActiveState {
   setActiveNote: (note: NoteProps) => void;
 }
 
-export const useActiveStore = create<ActiveState>()((set) => ({
+export const useActiveNoteStore = create<ActiveState>()((set) => ({
   activeNoteTitle: "",
   activeNote: {
     content: "",

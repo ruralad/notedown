@@ -1,4 +1,4 @@
-import { useActiveStore, useNoteStore } from "../../store/NoteStore";
+import { useActiveNoteStore, useNoteStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
 
 import { readNotedownFolder } from "../../utils/ReadUtils";
@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   const updateNotes = useNoteStore((state) => state.updateNotes);
   const settings = useSettingsStore();
 
-  const setActiveNoteTitle = useActiveStore(
+  const setActiveNoteTitle = useActiveNoteStore(
     (state) => state.setActiveNoteTitle
   );
 
