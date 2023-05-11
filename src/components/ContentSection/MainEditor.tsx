@@ -14,9 +14,7 @@ const MainEditor: React.FC<MainEditorProps> = (props) => {
   const editorStyle = useSettingsStore(
     (state) => state.appSettings.editorStyle
   );
-  const setLineAndColumn = useNoteDetailsStore(
-    (state) => state.setLineAndColumn
-  );
+  const { setLineAndColumn } = useNoteDetailsStore();
 
   const updateLineAndColumn = (
     e:

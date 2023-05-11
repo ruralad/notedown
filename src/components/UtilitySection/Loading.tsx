@@ -14,7 +14,7 @@ type LoadingProps = {
 };
 
 const Loading: React.FC<LoadingProps> = (props) => {
-  const settingsStore = useSettingsStore();
+  const { setAppSettings } = useSettingsStore();
   const loadingStore = useLoadingStore();
   const updateNotes = useNoteStore((state) => state.updateNotes);
 
@@ -33,7 +33,7 @@ const Loading: React.FC<LoadingProps> = (props) => {
         updateNotes(notes);
       });
       readAppSettings().then((settings) => {
-        settingsStore.setAppSettings(settings);
+        setAppSettings(settings);
         if (settings.isFullscreen) appWindow.maximize();
         else appWindow.unmaximize();
         toggleTheme(settings.theme);
