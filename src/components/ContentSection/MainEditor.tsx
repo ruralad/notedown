@@ -1,7 +1,8 @@
 import ReactMarkdown from "react-markdown";
-import { useNoteDetailsStore } from "../../store/NoteStore";
 
+import { useNoteDetailsStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
+import { useUiStore } from "../../store/UiStore";
 
 import { getLineAndColumn } from "../../utils/StatsUtils";
 
@@ -15,6 +16,7 @@ const MainEditor: React.FC<MainEditorProps> = (props) => {
     (state) => state.appSettings.editorStyle
   );
   const { setLineAndColumn } = useNoteDetailsStore();
+  const { setEditorActive } = useUiStore();
 
   const updateLineAndColumn = (
     e:
@@ -33,6 +35,8 @@ const MainEditor: React.FC<MainEditorProps> = (props) => {
           onChange={(e) => props.setContents(e.target.value)}
           onKeyUp={(e) => updateLineAndColumn(e)}
           onMouseUp={(e) => updateLineAndColumn(e)}
+          onFocus={() => setEditorActive(true)}
+          onBlur={() => setEditorActive(false)}
           spellCheck={false}
           value={props.contents}
         />

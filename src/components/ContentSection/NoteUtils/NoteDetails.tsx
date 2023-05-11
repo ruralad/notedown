@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { useNoteDetailsStore } from "../../../store/NoteStore";
+import {
+  useActiveNoteStore,
+  useNoteDetailsStore,
+} from "../../../store/NoteStore";
+import { useUiStore } from "../../../store/UiStore";
 
 type NoteDetailsProps = {
   contents: string;
@@ -8,6 +12,8 @@ type NoteDetailsProps = {
 
 const NoteDetails: React.FC<NoteDetailsProps> = (props) => {
   const { column, line } = useNoteDetailsStore();
+  const content = useActiveNoteStore((state) => state.activeNote.content);
+  const { editorActive } = useUiStore();
 
   const [wordCount, setWordCount] = useState<number>(0);
   const [charCount, setCharCount] = useState<number>(0);
@@ -30,7 +36,12 @@ const NoteDetails: React.FC<NoteDetailsProps> = (props) => {
 
   return (
     <span className="absolute right-3 bottom-3 text-xs text-muted-foreground">
-      Ln {line} Col {column} | Words {wordCount} Chars {charCount}
+      {editorActive && (
+        <>
+          Ln {line} Col {column} |{" "}
+        </>
+      )}
+      Words {wordCount} Chars {charCount}
     </span>
   );
 };
