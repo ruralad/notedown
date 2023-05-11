@@ -9,25 +9,21 @@ import { updateAppSettings } from "../../utils/StatsUtils";
 import { renameNote, writeToNote } from "../../utils/WriteUtils";
 
 import MainEditor from "./MainEditor";
+import NoteDetails from "./NoteUtils/NoteDetails";
 import NoteSettings from "./NoteUtils/NoteSettings";
 import Title from "./Title";
 
 import { NoteProps } from "../../../types/Notes";
 import { AppSettingsProps } from "../../../types/Settings";
-import NoteDetails from "./NoteUtils/NoteDetails";
 
 const ContentSection: React.FC = () => {
-  const activeNoteTitle = useActiveNoteStore((state) => state.activeNoteTitle);
-  const activeNote = useActiveNoteStore((state) => state.activeNote);
-  const allNotes = useNoteStore((state) => state.notes);
-  const focusMode = useUiStore((state) => state.focusMode);
-  const appSettings = useSettingsStore((state) => state.appSettings);
-
-  const setActiveNote = useActiveNoteStore((state) => state.setActiveNote);
+  const { activeNoteTitle, activeNote, setActiveNote } = useActiveNoteStore();
+  const { notes } = useNoteStore();
+  const { focusMode } = useUiStore();
+  const { appSettings } = useSettingsStore();
 
   const [title, setTitle] = useState<string>("");
   const [contents, setContents] = useState<string>("");
-
   const [titleError, setTitleError] = useState<boolean>(false);
 
   useEffect(() => {
@@ -62,7 +58,7 @@ const ContentSection: React.FC = () => {
   const updateTitle = () => {
     if (
       title.length < 1 ||
-      (allNotes
+      (notes
         .map((file) => file.name?.toLowerCase())
         .includes(title.trim().toLowerCase() + ".json") &&
         title.trim() != activeNoteTitle.split(".json")[0])

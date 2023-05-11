@@ -8,17 +8,15 @@ import { createNewNote } from "../../utils/WriteUtils";
 import { PlusIcon } from "lucide-react";
 
 const Header: React.FC = () => {
-  const updateNotes = useNoteStore((state) => state.updateNotes);
-  const settings = useSettingsStore();
+  const { updateNotes } = useNoteStore();
+  const { appSettings, setAppSettings } = useSettingsStore();
 
-  const setActiveNoteTitle = useActiveNoteStore(
-    (state) => state.setActiveNoteTitle
-  );
+  const { setActiveNoteTitle } = useActiveNoteStore();
 
   const createNote = async () => {
-    createNewNote(settings.appSettings.notesCreated).then(async (noteName) => {
-      await updateNotesCount(settings.appSettings).then((newsettings) => {
-        settings.setAppSettings(newsettings);
+    createNewNote(appSettings.notesCreated).then(async (noteName) => {
+      await updateNotesCount(appSettings).then((newsettings) => {
+        setAppSettings(newsettings);
       });
       setActiveNoteTitle(noteName);
     });

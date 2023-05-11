@@ -1,7 +1,10 @@
-import { DownloadIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+
 import { useActiveNoteStore } from "../../store/NoteStore";
+
 import { exportNoteAsMarkdown } from "../../utils/WriteUtils";
+
+import { DownloadIcon } from "lucide-react";
 
 const ExportNote = () => {
   const { activeNote } = useActiveNoteStore();

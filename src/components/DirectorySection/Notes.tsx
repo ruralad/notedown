@@ -2,23 +2,19 @@ import { appWindow } from "@tauri-apps/api/window";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 
+import { ScrollArea } from "../ui/scroll-area";
+
 import { useActiveNoteStore, useNoteStore } from "../../store/NoteStore";
 import { useSettingsStore } from "../../store/SettingsStore";
 
 import { updateAppSettings } from "../../utils/StatsUtils";
 
 import { AppSettingsProps } from "../../../types/Settings";
-import { ScrollArea } from "../ui/scroll-area";
 
 const Notes: React.FC = () => {
-  const allNotes = useNoteStore((state) => state.notes);
-  const activeNoteTitle = useActiveNoteStore((state) => state.activeNoteTitle);
-  const appSettings = useSettingsStore((state) => state.appSettings);
-
-  const setAppSettings = useSettingsStore((state) => state.setAppSettings);
-  const setActiveNoteTitle = useActiveNoteStore(
-    (state) => state.setActiveNoteTitle
-  );
+  const { notes } = useNoteStore();
+  const { activeNoteTitle, setActiveNoteTitle } = useActiveNoteStore();
+  const { appSettings, setAppSettings } = useSettingsStore();
 
   useEffect(() => {
     if (appSettings.lastOpened.length > 0)
@@ -40,8 +36,8 @@ const Notes: React.FC = () => {
     <div className="mt-10">
       <ScrollArea className="h-full w-full">
         <AnimatePresence>
-          {allNotes &&
-            allNotes.map((v, i) => {
+          {notes &&
+            notes.map((v, i) => {
               return (
                 <motion.div
                   variants={{

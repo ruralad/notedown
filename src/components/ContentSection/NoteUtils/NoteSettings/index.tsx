@@ -14,10 +14,8 @@ import { BookDownIcon, ClipboardIcon, Edit3Icon } from "lucide-react";
 import { AppSettingsProps } from "../../../../../types/Settings";
 
 const NoteSettings = () => {
-  const activeNoteTitle = useActiveNoteStore((state) => state.activeNoteTitle);
-  const appSettings = useSettingsStore((state) => state.appSettings);
-
-  const setAppSettings = useSettingsStore((state) => state.setAppSettings);
+  const { activeNoteTitle } = useActiveNoteStore();
+  const { appSettings, setAppSettings } = useSettingsStore();
 
   const [copiedToClipboard, setCopiedToClipboard] = useState(false);
 
