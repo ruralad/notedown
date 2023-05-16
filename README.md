@@ -20,14 +20,43 @@
 ![GitHub all releases](https://img.shields.io/github/downloads/ruralad/notedown/total)
 
 </div>
+<u>
+
+## Features
+
+</u>
+
+📝 Simple, clutter free ui
+
+🛡️ Private. No data collected.
+
+🌝 Light/Dark themes
+
+🎯 Focus Mode
+
+⬇️ Preview/Export as Markdown
+
+❇️ Auto Update
+
+📂 Folders (coming soon)
+
+<br>
+
+<u>
 
 ## Installation
 
+</u>
 Notedown is under heavy development, expect a lot of breaking changes till we hit 1.0.
 If you want to install Notedown on your system, you can download the installer for your operating system [on the release page](https://github.com/ruralad/notedown/releases).
 
+<br>
+
+<u>
+
 ## Run Locally
 
+</u>
 Clone the project
 
 ```bash
@@ -54,6 +83,10 @@ Start the server
   pnpm tauri dev
 ```
 
+<u>
+
 ## License
+
+</u>
 
 Licensed under the [MIT license](https://github.com/ruralad/notedown/blob/main/LICENSE).

@@ -64,7 +64,7 @@
         "icons/icon.ico"
       ],
       "identifier": "com.ruralad.notedown",
-      "targets": "all"
+      "targets": ["app", "appimage", "deb", "dmg", "msi", "updater"]
     },
     "security": {
       "csp": null
