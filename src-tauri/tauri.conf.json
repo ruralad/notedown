@@ -8,7 +8,7 @@
   },
   "package": {
     "productName": "Notedown",
-    "version": "0.7.2"
+    "version": "0.8.0"
   },
   "tauri": {
     "allowlist": {
@@ -72,7 +72,7 @@
     "updater": {
       "active": true,
       "endpoints": [
-        "https://notedown-update-server.vercel.app/update/{{target}}/{{current_version}}"
+        "https://github.com/ruralad/notedown/releases/latest/download/latest.json"
       ],
       "dialog": true,
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDg4OTYxRUVCNkI3MTExRkIKUldUN0VYRnI2eDZXaUowZXpDNHk1N2dmMXJRbzRWUTZ6L1ZsT3JUZWRXQjdLVVI0NGZYalhEK1cK",
