@@ -4,13 +4,10 @@ import {
   exists,
   writeTextFile,
 } from "@tauri-apps/api/fs";
-import { documentDir } from "@tauri-apps/api/path";
+
+import { appJsonFilePath, settingsFolderPath } from "./PathUtils";
 
 import { AppSettingsProps } from "../../types/Settings";
-
-export const getNotedownFolder = async () => {
-  return (await documentDir()) + "Notedown";
-};
 
 export const verifyNotedownFolder = async () => {
   const folderExist: Boolean = await exists("Notedown", {
@@ -33,16 +30,14 @@ export const verifyNotedownFolder = async () => {
     recursive: true,
   })
     .then(async () => {
-      await createDir("Notedown\\.settings", {
+      await createDir(settingsFolderPath, {
         dir: BaseDirectory.Document,
         recursive: true,
       })
         .then(async () => {
-          await writeTextFile(
-            "Notedown\\.settings\\app.json",
-            JSON.stringify(appSettings),
-            { dir: BaseDirectory.Document }
-          ).then(() => {
+          await writeTextFile(appJsonFilePath, JSON.stringify(appSettings), {
+            dir: BaseDirectory.Document,
+          }).then(() => {
             console.log("Folders initialized");
           });
         })

@@ -1,20 +1,19 @@
 import { writeText } from "@tauri-apps/api/clipboard";
 import { readDir, readTextFile } from "@tauri-apps/api/fs";
 
-import { getNotedownFolder } from "./DirectoryUtils";
-
 import type { NoteProps } from "../../types/Notes";
+import { notedownFolderPath, pathSeperator } from "./PathUtils";
 
 export const readNotedownFolder = async () => {
-  const folder = await getNotedownFolder();
-  const notes = await readDir(folder, { recursive: true });
+  const notes = await readDir(notedownFolderPath, { recursive: true });
   //removing first entry because its the .settings folder
   return notes.splice(1);
 };
 
 export const readNote = async (noteName: string) => {
-  const folder = await getNotedownFolder();
-  const contents = await readTextFile(folder + `\\` + noteName);
+  const contents = await readTextFile(
+    notedownFolderPath + pathSeperator + noteName
+  );
   const json: NoteProps = JSON.parse(contents);
   return json;
 };
