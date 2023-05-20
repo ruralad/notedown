@@ -1,12 +1,10 @@
 import { readTextFile, writeTextFile } from "@tauri-apps/api/fs";
 
 import { AppSettingsProps } from "../../types/Settings";
-import { appJsonFilePath, notedownFolderPath } from "./PathUtils";
+import { getAppJsonFilePath } from "./PathUtils";
 
 export const readAppSettings = async () => {
-  const contents = await readTextFile(
-    notedownFolderPath + `\\.settings\\app.json`
-  );
+  const contents = await readTextFile(await getAppJsonFilePath());
   const json: AppSettingsProps = JSON.parse(contents);
   return json;
 };
@@ -33,7 +31,7 @@ export const updateDeletedNotesCount = async (
 };
 
 export const updateAppSettings = async (newSettings: AppSettingsProps) => {
-  await writeTextFile(appJsonFilePath, JSON.stringify(newSettings));
+  await writeTextFile(await getAppJsonFilePath(), JSON.stringify(newSettings));
 };
 
 export const getLineAndColumn = (

@@ -9,13 +9,18 @@ export const getPathSeperator = async () => {
     return "/";
   }
 };
+export const getNotedownFolderPath = async () => {
+  return (await documentDir()) + "Notedown";
+};
 
-export const notedownFolderPath: string = (await documentDir()) + "Notedown";
+export const getSettingsFolderPath = async () => {
+  return (
+    (await getNotedownFolderPath()) + (await getPathSeperator()) + ".settings"
+  );
+};
 
-export const pathSeperator: string = await getPathSeperator();
-
-export const settingsFolderPath: string =
-  notedownFolderPath + (await getPathSeperator()) + ".settings";
-
-export const appJsonFilePath: string =
-  settingsFolderPath + (await getPathSeperator()) + "app.json";
+export const getAppJsonFilePath = async () => {
+  return (
+    (await getSettingsFolderPath()) + (await getPathSeperator()) + "app.json"
+  );
+};

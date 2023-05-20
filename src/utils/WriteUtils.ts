@@ -7,7 +7,7 @@ import { readNotedownFolder } from "./ReadUtils";
 
 import { save } from "@tauri-apps/api/dialog";
 import { NoteProps } from "../../types/Notes";
-import { notedownFolderPath, pathSeperator } from "./PathUtils";
+import { getNotedownFolderPath, getPathSeperator } from "./PathUtils";
 
 export const createNewNote = async (totalNotes: number) => {
   const noteName = `Note - ${useNoteStore.getState().notes.length + 1}.json`;
@@ -24,13 +24,19 @@ export const createNewNote = async (totalNotes: number) => {
 };
 
 export const writeToNote = async (noteName: string, contents: string) => {
-  await writeTextFile(notedownFolderPath + pathSeperator + noteName, contents);
+  await writeTextFile(
+    (await getNotedownFolderPath()) + (await getPathSeperator()) + noteName,
+    contents
+  );
 };
 
 export const renameNote = async (noteName: string, newNoteName: string) => {
   await renameFile(
-    notedownFolderPath + pathSeperator + noteName,
-    notedownFolderPath + pathSeperator + newNoteName + ".json"
+    (await getNotedownFolderPath()) + (await getPathSeperator()) + noteName,
+    (await getNotedownFolderPath()) +
+      (await getPathSeperator()) +
+      newNoteName +
+      ".json"
   ).then(() =>
     readNotedownFolder().then((notes) => {
       useActiveNoteStore.getState().setActiveNoteTitle(newNoteName + ".json");
@@ -41,7 +47,9 @@ export const renameNote = async (noteName: string, newNoteName: string) => {
 
 export const deleteNote = async (noteName: string) => {
   useActiveNoteStore.getState().setActiveNoteTitle("");
-  await removeFile(notedownFolderPath + pathSeperator + noteName).then(() => {
+  await removeFile(
+    (await getNotedownFolderPath()) + (await getPathSeperator()) + noteName
+  ).then(() => {
     readNotedownFolder().then((notes) => {
       useNoteStore.getState().updateNotes(notes);
     });
