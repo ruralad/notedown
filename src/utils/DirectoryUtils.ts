@@ -5,8 +5,9 @@ import {
   writeTextFile,
 } from "@tauri-apps/api/fs";
 
-import { AppSettingsProps } from "../../types/Settings";
 import { getAppJsonFilePath, getSettingsFolderPath } from "./PathUtils";
+
+import { AppSettingsProps } from "../../types/Settings";
 
 export const verifyNotedownFolder = async () => {
   const folderExist: Boolean = await exists("Notedown", {
