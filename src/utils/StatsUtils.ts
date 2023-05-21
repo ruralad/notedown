@@ -1,7 +1,8 @@
 import { readTextFile, writeTextFile } from "@tauri-apps/api/fs";
 
-import { AppSettingsProps } from "../../types/Settings";
 import { getAppJsonFilePath } from "./PathUtils";
+
+import { AppSettingsProps } from "../../types/Settings";
 
 export const readAppSettings = async () => {
   const contents = await readTextFile(await getAppJsonFilePath());

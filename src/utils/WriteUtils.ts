@@ -3,11 +3,13 @@ import { v4 as uuidv4 } from "uuid";
 
 import { useActiveNoteStore, useNoteStore } from "../store/NoteStore";
 
+import { getNotedownFolderPath } from "./PathUtils";
 import { readNotedownFolder } from "./ReadUtils";
 
 import { save } from "@tauri-apps/api/dialog";
+import { sep } from "@tauri-apps/api/path";
+
 import { NoteProps } from "../../types/Notes";
-import { getNotedownFolderPath, getPathSeperator } from "./PathUtils";
 
 export const createNewNote = async (totalNotes: number) => {
   const noteName = `Note - ${useNoteStore.getState().notes.length + 1}.json`;
@@ -25,18 +27,15 @@ export const createNewNote = async (totalNotes: number) => {
 
 export const writeToNote = async (noteName: string, contents: string) => {
   await writeTextFile(
-    (await getNotedownFolderPath()) + (await getPathSeperator()) + noteName,
+    (await getNotedownFolderPath()) + sep + noteName,
     contents
   );
 };
 
 export const renameNote = async (noteName: string, newNoteName: string) => {
   await renameFile(
-    (await getNotedownFolderPath()) + (await getPathSeperator()) + noteName,
-    (await getNotedownFolderPath()) +
-      (await getPathSeperator()) +
-      newNoteName +
-      ".json"
+    (await getNotedownFolderPath()) + sep + noteName,
+    (await getNotedownFolderPath()) + sep + newNoteName + ".json"
   ).then(() =>
     readNotedownFolder().then((notes) => {
       useActiveNoteStore.getState().setActiveNoteTitle(newNoteName + ".json");
@@ -47,13 +46,13 @@ export const renameNote = async (noteName: string, newNoteName: string) => {
 
 export const deleteNote = async (noteName: string) => {
   useActiveNoteStore.getState().setActiveNoteTitle("");
-  await removeFile(
-    (await getNotedownFolderPath()) + (await getPathSeperator()) + noteName
-  ).then(() => {
-    readNotedownFolder().then((notes) => {
-      useNoteStore.getState().updateNotes(notes);
-    });
-  });
+  await removeFile((await getNotedownFolderPath()) + sep + noteName).then(
+    () => {
+      readNotedownFolder().then((notes) => {
+        useNoteStore.getState().updateNotes(notes);
+      });
+    }
+  );
 };
 
 export const exportNoteAsMarkdown = async (note: NoteProps) => {
