@@ -28,11 +28,12 @@ const Header: React.FC = () => {
   return (
     <div className="flex items-center w-full px-4 justify-between">
       <h1 className="text-2xl">All Notes</h1>
-      <PlusIcon
-        size={16}
+      <span
         onClick={createNote}
-        className="hover:cursor-pointer"
-      />
+        className="block hover:bg-accent p-1 rounded hover:cursor-pointer hover:text-primary"
+      >
+        <PlusIcon size={15} />
+      </span>
     </div>
   );
 };

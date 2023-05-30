@@ -1,5 +1,5 @@
-import { useActiveNoteStore } from "../../store/NoteStore";
-import { useSettingsStore } from "../../store/SettingsStore";
+import { useActiveNoteStore } from "../../../../store/NoteStore";
+import { useSettingsStore } from "../../../../store/SettingsStore";
 
 import { TrashIcon } from "lucide-react";
 
@@ -13,10 +13,10 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "../../components/ui/alert-dialog";
+} from "../../../ui/alert-dialog";
 
-import { updateDeletedNotesCount } from "../../utils/StatsUtils";
-import { deleteNote } from "../../utils/WriteUtils";
+import { updateDeletedNotesCount } from "../../../../utils/StatsUtils";
+import { deleteNote } from "../../../../utils/WriteUtils";
 
 const DeleteNote = () => {
   const { activeNoteTitle } = useActiveNoteStore();
@@ -33,10 +33,9 @@ const DeleteNote = () => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <TrashIcon
-          size={15}
-          className="hover:text-red-600 hover:cursor-pointer"
-        />
+        <span className="flex px-2 py-1.5 items-center gap-2 hover:bg-accent hover:text-accent-foreground hover:text-red-600 cursor-default rounded transition-colors">
+          <TrashIcon size={15} /> Delete Note
+        </span>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

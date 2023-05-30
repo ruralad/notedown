@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import { useActiveNoteStore } from "../../store/NoteStore";
+import { useActiveNoteStore } from "../../../../store/NoteStore";
 
-import { exportNoteAsMarkdown } from "../../utils/WriteUtils";
+import { exportNoteAsMarkdown } from "../../../../utils/WriteUtils";
 
 import { DownloadIcon } from "lucide-react";
 
@@ -22,13 +22,16 @@ const ExportNote = () => {
     await exportNoteAsMarkdown(activeNote).then(() => setExported(true));
   };
   return (
-    <>
+    <span
+      onClick={handleExport}
+      className="flex px-2 py-1.5 items-center gap-2 hover:bg-accent hover:text-accent-foreground cursor-default rounded transition-colors"
+    >
       {!!exported ? (
         <svg
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 120.2 120.2"
-          className="w-4"
+          className="w-[15px]"
         >
           <polyline
             className="checkmark"
@@ -41,14 +44,12 @@ const ExportNote = () => {
           />
         </svg>
       ) : (
-        <DownloadIcon
-          size={15}
-          className="hover:cursor-pointer mt-[1px] hover:text-primary"
-          onClick={handleExport}
-        />
+        <DownloadIcon size={15} />
       )}
-    </>
+      <span>Export</span>
+    </span>
   );
 };
 
 export default ExportNote;
+``;
