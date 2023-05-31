@@ -49,7 +49,7 @@ const ThemeChanger = () => {
                 {appSettings.theme === "system" && <LaptopIcon size={16} />}
               </span>
             </TooltipTrigger>
-            <TooltipContent>
+            <TooltipContent side="bottom">
               <p>Change Theme</p>
             </TooltipContent>
           </Tooltip>

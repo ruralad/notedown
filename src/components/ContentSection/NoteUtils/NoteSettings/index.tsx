@@ -35,7 +35,7 @@ const NoteSettings = () => {
                     <MoreVerticalIcon size={15} />
                   </span>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent side="bottom">
                   <p>Note Settings</p>
                 </TooltipContent>
               </Tooltip>

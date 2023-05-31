@@ -27,7 +27,7 @@ const FocusModeHandler = () => {
             )}
           </span>
         </TooltipTrigger>
-        <TooltipContent>
+        <TooltipContent side="bottom">
           <p>{focusMode ? "Switch to Focus Mode" : "Switch to Default Mode"}</p>
         </TooltipContent>
       </Tooltip>

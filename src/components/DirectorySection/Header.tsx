@@ -45,7 +45,7 @@ const Header: React.FC = () => {
               <PlusIcon size={15} />
             </span>
           </TooltipTrigger>
-          <TooltipContent>
+          <TooltipContent side="bottom">
             <p>Create New Note</p>
           </TooltipContent>
         </Tooltip>

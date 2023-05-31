@@ -59,7 +59,7 @@ const AppWindowHandler = () => {
               <MinusIcon size={16} />
             </span>
           </TooltipTrigger>
-          <TooltipContent>Minimize Window</TooltipContent>
+          <TooltipContent side="bottom">Minimize Window</TooltipContent>
         </Tooltip>
       </TooltipProvider>
 
@@ -73,7 +73,7 @@ const AppWindowHandler = () => {
               <SquareIcon size={13} />
             </span>
           </TooltipTrigger>
-          <TooltipContent>
+          <TooltipContent side="bottom">
             {!!fullscreen ? "Unmaximize" : "Maximize"} Window
           </TooltipContent>
         </Tooltip>
@@ -89,7 +89,7 @@ const AppWindowHandler = () => {
               <XIcon size={16} />
             </span>
           </TooltipTrigger>
-          <TooltipContent>Close App</TooltipContent>
+          <TooltipContent side="bottom">Close App</TooltipContent>
         </Tooltip>
       </TooltipProvider>
     </div>
