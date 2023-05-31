@@ -8,6 +8,12 @@ import { updateAppSettings } from "../../utils/StatsUtils";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 import { LaptopIcon, MoonIcon, SunIcon } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../../components/ui/tooltip";
 
 import { AppSettingsProps } from "../../../types/Settings";
 
@@ -34,14 +40,20 @@ const ThemeChanger = () => {
   return (
     <Popover>
       <PopoverTrigger>
-        <span
-          className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-accent hover:text-primary hover:cursor-default"
-          title="Change Theme"
-        >
-          {appSettings.theme === "dark" && <MoonIcon size={16} />}
-          {appSettings.theme === "light" && <SunIcon size={16} />}
-          {appSettings.theme === "system" && <LaptopIcon size={16} />}
-        </span>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <span className="grid place-items-center w-8 h-8 p-2 rounded-lg hover:bg-accent hover:text-primary hover:cursor-default">
+                {appSettings.theme === "dark" && <MoonIcon size={16} />}
+                {appSettings.theme === "light" && <SunIcon size={16} />}
+                {appSettings.theme === "system" && <LaptopIcon size={16} />}
+              </span>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Change Theme</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </PopoverTrigger>
       <PopoverContent className="w-fit flex flex-col text-sm p-2">
         <span

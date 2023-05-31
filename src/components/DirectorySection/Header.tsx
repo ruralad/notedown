@@ -5,6 +5,13 @@ import { readNotedownFolder } from "../../utils/ReadUtils";
 import { updateNotesCount } from "../../utils/StatsUtils";
 import { createNewNote } from "../../utils/WriteUtils";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../../components/ui/tooltip";
+
 import { PlusIcon } from "lucide-react";
 
 const Header: React.FC = () => {
@@ -28,12 +35,21 @@ const Header: React.FC = () => {
   return (
     <div className="flex items-center w-full px-4 justify-between">
       <h1 className="text-2xl">All Notes</h1>
-      <span
-        onClick={createNote}
-        className="block hover:bg-accent p-1 rounded hover:cursor-pointer hover:text-primary"
-      >
-        <PlusIcon size={15} />
-      </span>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger>
+            <span
+              onClick={createNote}
+              className="block hover:bg-accent p-1 rounded-lg hover:cursor-pointer hover:text-primary"
+            >
+              <PlusIcon size={15} />
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Create New Note</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
     </div>
   );
 };
